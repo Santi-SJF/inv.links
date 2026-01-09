@@ -1,1 +1,389 @@
-<h1>Hello World</h1>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Financiero - Terminal Estratégica</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            color: #f1f5f9;
+            overflow-x: hidden;
+        }
+
+        /* Tarjetas con efecto cristal adaptativo */
+        .card-glass {
+            background-color: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            height: 100%;
+        }
+
+        .card-glass:hover {
+            transform: translateY(-5px);
+            background-color: rgba(255, 255, 255, 0.06);
+            border-color: #fb923c; /* orange-400 */
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Zona de fecha: Integrada y minimalista */
+        .date-container {
+            background-color: rgba(0, 0, 0, 0.15);
+            color: rgba(255, 255, 255, 0.9);
+            border-left: 3px solid rgba(255, 255, 255, 0.3);
+            padding: 0.25rem 0.75rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.025em;
+            display: flex;
+            align-items: center;
+            border-radius: 0 4px 4px 0;
+        }
+
+        /* Transiciones de sección */
+        .section-content {
+            display: none;
+            animation: fadeInPage 0.6s ease-out;
+        }
+
+        .section-content.active {
+            display: block;
+        }
+
+        @keyframes fadeInPage {
+            from { opacity: 0; transform: scale(0.99); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .nav-link.active {
+            background-color: rgba(255, 255, 255, 0.15);
+            border-bottom: 3px solid #fdba74; /* orange-300 */
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- Header Naranja Principal -->
+    <header class="bg-orange-700 text-white shadow-2xl sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center">
+            <div class="flex items-center">
+                <div class="flex flex-col">
+                    <h1 class="text-xl font-bold tracking-tight uppercase leading-none mb-2">Terminal Estratégica</h1>
+                    <div id="current-date" class="date-container md:inline-flex hidden">
+                        <!-- Fecha automática JS -->
+                    </div>
+                </div>
+            </div>
+            
+            <nav class="mt-4 md:mt-0">
+                <ul id="main-nav" class="flex space-x-1 text-xs font-bold uppercase tracking-wider">
+                    <li><button onclick="showSection('macroeconomia')" class="nav-link px-4 py-3 hover:bg-orange-600 transition active" data-section="macroeconomia">Macro</button></li>
+                    <li><button onclick="showSection('noticias')" class="nav-link px-4 py-3 hover:bg-orange-600 transition" data-section="noticias">Noticias</button></li>
+                    <li><button onclick="showSection('analisis')" class="nav-link px-4 py-3 hover:bg-orange-600 transition" data-section="analisis">Análisis</button></li>
+                    <li><button onclick="showSection('empresas')" class="nav-link px-4 py-3 hover:bg-orange-600 transition" data-section="empresas">Empresas</button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        
+        <!-- SECCIÓN: MACROECONOMÍA -->
+        <section id="macroeconomia" class="section-content active bg-[#0f172a] min-h-screen py-20">
+            <div class="container mx-auto px-6">
+                <div class="flex items-center mb-12">
+                    <div class="w-2 h-10 bg-orange-500 rounded-full mr-5"></div>
+                    <h2 class="text-4xl font-black text-white uppercase tracking-tighter">Macroeconomía</h2>
+                </div>
+
+                <div class="mb-6">
+                    <h3 class="text-xl font-bold text-white uppercase tracking-tight">Macro Data Sources</h3>
+                    <p class="text-orange-400/70 text-[10px] font-bold uppercase tracking-widest">Fuentes de Datos Macroeconómicos</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <a href="https://fred.stlouisfed.org/" target="_blank" class="group block p-8 rounded-3xl card-glass">
+                        <h4 class="text-xl font-bold text-white group-hover:text-orange-400 mb-3">FRED</h4>
+                        <p class="text-slate-500 text-[10px] font-bold uppercase tracking-widest mb-2">Federal Reserve Economic Data</p>
+                        <p class="text-slate-400 text-sm leading-relaxed">Más de 800,000 series temporales internacionales de la Reserva Federal.</p>
+                    </a>
+                    <a href="https://www.longtermtrends.net/" target="_blank" class="group block p-8 rounded-3xl card-glass">
+                        <h4 class="text-xl font-bold text-white group-hover:text-orange-400 mb-3">Longtermtrends</h4>
+                        <p class="text-slate-500 text-[10px] font-bold uppercase tracking-widest mb-2">Tendencias Históricas</p>
+                        <p class="text-slate-400 text-sm leading-relaxed">Visualización de ratios históricos y tendencias macro de largo plazo.</p>
+                    </a>
+                    <a href="https://www.gurufocus.com/yield_curve.php" target="_blank" class="group block p-8 rounded-3xl card-glass">
+                        <h4 class="text-xl font-bold text-white group-hover:text-orange-400 mb-3">Yield Curve Monitor</h4>
+                        <p class="text-slate-500 text-[10px] font-bold uppercase tracking-widest mb-2">Curva de Tipos</p>
+                        <p class="text-slate-400 text-sm leading-relaxed">Monitor interactivo de diferenciales de tipos para predecir ciclos.</p>
+                    </a>
+                    <a href="https://tradingeconomics.com/" target="_blank" class="group block p-8 rounded-3xl card-glass">
+                        <h4 class="text-xl font-bold text-white group-hover:text-orange-400 mb-3">Trading Economics</h4>
+                        <p class="text-slate-500 text-[10px] font-bold uppercase tracking-widest mb-2">Indicadores Globales</p>
+                        <p class="text-slate-400 text-sm leading-relaxed">Datos precisos y proyecciones para 196 países.</p>
+                    </a>
+                    <a href="https://www.imf.org/en/Data" target="_blank" class="group block p-8 rounded-3xl card-glass">
+                        <h4 class="text-xl font-bold text-white group-hover:text-orange-400 mb-3">IMF Data</h4>
+                        <p class="text-slate-500 text-[10px] font-bold uppercase tracking-widest mb-2">Fondo Monetario Int.</p>
+                        <p class="text-slate-400 text-sm leading-relaxed">Finanzas globales y World Economic Outlook.</p>
+                    </a>
+                    <a href="https://data.oecd.org/" target="_blank" class="group block p-8 rounded-3xl card-glass">
+                        <h4 class="text-xl font-bold text-white group-hover:text-orange-400 mb-3">OECD Data</h4>
+                        <p class="text-slate-500 text-[10px] font-bold uppercase tracking-widest mb-2">OCDE Estadísticas</p>
+                        <p class="text-slate-400 text-sm leading-relaxed">Datos comparativos de alta calidad sobre economías desarrolladas.</p>
+                    </a>
+                    <a href="https://data.worldbank.org/" target="_blank" class="group block p-8 rounded-3xl card-glass">
+                        <h4 class="text-xl font-bold text-white group-hover:text-orange-400 mb-3">World Bank</h4>
+                        <p class="text-slate-500 text-[10px] font-bold uppercase tracking-widest mb-2">Banco Mundial</p>
+                        <p class="text-slate-400 text-sm leading-relaxed">Acceso libre a datos sobre desarrollo global.</p>
+                    </a>
+                    <a href="https://ec.europa.eu/eurostat/data/database" target="_blank" class="group block p-8 rounded-3xl card-glass">
+                        <h4 class="text-xl font-bold text-white group-hover:text-orange-400 mb-3">Eurostat</h4>
+                        <p class="text-slate-500 text-[10px] font-bold uppercase tracking-widest mb-2">Unión Europea</p>
+                        <p class="text-slate-400 text-sm leading-relaxed">Base oficial para la Eurozona y los 27 países miembros.</p>
+                    </a>
+                    <a href="https://www.ine.es/" target="_blank" class="group block p-8 rounded-3xl card-glass">
+                        <h4 class="text-xl font-bold text-white group-hover:text-orange-400 mb-3">INE España</h4>
+                        <p class="text-slate-500 text-[10px] font-bold uppercase tracking-widest mb-2">Estadística Nacional</p>
+                        <p class="text-slate-400 text-sm leading-relaxed">IPC, EPA y PIB de la economía española.</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: NOTICIAS -->
+        <section id="noticias" class="section-content bg-[#1c1917] min-h-screen py-20">
+            <div class="container mx-auto px-6">
+                <div class="flex items-center mb-6">
+                    <div class="w-2 h-10 bg-orange-600 rounded-full mr-5"></div>
+                    <h2 class="text-4xl font-black text-white uppercase tracking-tighter">Noticias</h2>
+                </div>
+
+                <!-- Fuentes Gratuitas -->
+                <div class="mb-16">
+                    <div class="mb-6">
+                        <h3 class="text-xl font-bold text-white uppercase tracking-tight">Free Sources</h3>
+                        <p class="text-orange-500/70 text-[10px] font-bold uppercase tracking-widest">Fuentes Gratuitas</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <a href="https://www.google.com/finance/" target="_blank" class="group block p-6 rounded-2xl card-glass">
+                            <h4 class="text-lg font-bold text-white group-hover:text-orange-400 mb-2">Google Finance</h4>
+                            <p class="text-stone-400 text-xs leading-relaxed">Cotizaciones en tiempo real y noticias agregadas.</p>
+                        </a>
+                        <a href="https://finance.yahoo.com/" target="_blank" class="group block p-6 rounded-2xl card-glass">
+                            <h4 class="text-lg font-bold text-white group-hover:text-orange-400 mb-2">Yahoo Finance</h4>
+                            <p class="text-stone-400 text-xs leading-relaxed">Análisis fundamental y carteras globales.</p>
+                        </a>
+                        <a href="https://es.investing.com/" target="_blank" class="group block p-6 rounded-2xl card-glass">
+                            <h4 class="text-lg font-bold text-white group-hover:text-orange-400 mb-2">Investing.com</h4>
+                            <p class="text-stone-400 text-xs leading-relaxed">Calendario económico y cotizaciones técnicas.</p>
+                        </a>
+                        <a href="https://www.eleconomista.es/" target="_blank" class="group block p-6 rounded-2xl card-glass">
+                            <h4 class="text-lg font-bold text-white group-hover:text-orange-400 mb-2">El Economista</h4>
+                            <p class="text-stone-400 text-xs leading-relaxed">Prensa financiera líder en España.</p>
+                        </a>
+                        <a href="https://www.reuters.com/business/" target="_blank" class="group block p-6 rounded-2xl card-glass">
+                            <h4 class="text-lg font-bold text-white group-hover:text-orange-400 mb-2">Reuters</h4>
+                            <p class="text-stone-400 text-xs leading-relaxed">Agencia de noticias global de alta fiabilidad.</p>
+                        </a>
+                        <a href="https://www.cnbc.com/world/" target="_blank" class="group block p-6 rounded-2xl card-glass">
+                            <h4 class="text-lg font-bold text-white group-hover:text-orange-400 mb-2">CNBC World</h4>
+                            <p class="text-stone-400 text-xs leading-relaxed">Noticias de última hora sobre mercados globales.</p>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Fuentes de Pago -->
+                <div>
+                    <div class="mb-6">
+                        <h3 class="text-xl font-bold text-white uppercase tracking-tight">Paid Sources</h3>
+                        <p class="text-orange-500/70 text-[10px] font-bold uppercase tracking-widest">Fuentes de Pago</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <a href="https://seekingalpha.com/" target="_blank" class="group block p-6 rounded-2xl card-glass border-l-4 border-orange-500/30">
+                            <h4 class="text-lg font-bold text-white group-hover:text-orange-400 mb-2">Seeking Alpha</h4>
+                            <p class="text-stone-400 text-xs leading-relaxed">Análisis de inversores y datos premium.</p>
+                        </a>
+                        <a href="https://www.ft.com/" target="_blank" class="group block p-6 rounded-2xl card-glass border-l-4 border-orange-500/30">
+                            <h4 class="text-lg font-bold text-white group-hover:text-orange-400 mb-2">Financial Times</h4>
+                            <p class="text-stone-400 text-xs leading-relaxed">Análisis de élite y cobertura global.</p>
+                        </a>
+                        <a href="https://www.wsj.com/" target="_blank" class="group block p-6 rounded-2xl card-glass border-l-4 border-orange-500/30">
+                            <h4 class="text-lg font-bold text-white group-hover:text-orange-400 mb-2">Wall Street Journal</h4>
+                            <p class="text-stone-400 text-xs leading-relaxed">Referente financiero de Estados Unidos.</p>
+                        </a>
+                        <a href="https://www.bloomberg.com/" target="_blank" class="group block p-6 rounded-2xl card-glass border-l-4 border-orange-500/30">
+                            <h4 class="text-lg font-bold text-white group-hover:text-orange-400 mb-2">Bloomberg</h4>
+                            <p class="text-stone-400 text-xs leading-relaxed">Información crítica y terminal digital.</p>
+                        </a>
+                        <a href="https://www.expansion.com/" target="_blank" class="group block p-6 rounded-2xl card-glass border-l-4 border-orange-500/30">
+                            <h4 class="text-lg font-bold text-white group-hover:text-orange-400 mb-2">Expansión</h4>
+                            <p class="text-stone-400 text-xs leading-relaxed">Noticias económicas y empresariales en España.</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: ANÁLISIS -->
+        <section id="analisis" class="section-content bg-[#2d1616] min-h-screen py-20">
+            <div class="container mx-auto px-6">
+                <div class="flex items-center mb-12">
+                    <div class="w-2 h-10 bg-red-800 rounded-full mr-5"></div>
+                    <h2 class="text-4xl font-black text-white uppercase tracking-tighter">Análisis</h2>
+                </div>
+
+                <div class="mb-6">
+                    <h3 class="text-xl font-bold text-white uppercase tracking-tight">Analytical Tools</h3>
+                    <p class="text-red-400/70 text-[10px] font-bold uppercase tracking-widest">Herramientas de Análisis</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <a href="https://www.tradingview.com/" target="_blank" class="group block p-8 rounded-3xl card-glass">
+                        <h4 class="text-xl font-bold text-white group-hover:text-red-400 mb-3">TradingView</h4>
+                        <p class="text-red-100/40 text-sm leading-relaxed">Gráficos avanzados, análisis técnico y red social.</p>
+                    </a>
+                    <a href="https://www.koyfin.com/" target="_blank" class="group block p-8 rounded-3xl card-glass">
+                        <h4 class="text-xl font-bold text-white group-hover:text-red-400 mb-3">Koyfin</h4>
+                        <p class="text-red-100/40 text-sm leading-relaxed">Datos de mercado profesional y dashboards.</p>
+                    </a>
+                    <a href="https://tikr.com/" target="_blank" class="group block p-8 rounded-3xl card-glass">
+                        <h4 class="text-xl font-bold text-white group-hover:text-red-400 mb-3">Tikr Terminal</h4>
+                        <p class="text-red-100/40 text-sm leading-relaxed">Fundamental global y estimaciones históricas.</p>
+                    </a>
+                    <a href="https://finviz.com/" target="_blank" class="group block p-8 rounded-3xl card-glass">
+                        <h4 class="text-xl font-bold text-white group-hover:text-red-400 mb-3">Finviz</h4>
+                        <p class="text-red-100/40 text-sm leading-relaxed">Mapas de calor, screener y visualización rápida.</p>
+                    </a>
+                    <a href="https://simplywall.st/" target="_blank" class="group block p-8 rounded-3xl card-glass">
+                        <h4 class="text-xl font-bold text-white group-hover:text-red-400 mb-3">Simply Wall St</h4>
+                        <p class="text-red-100/40 text-sm leading-relaxed">Análisis visual intuitivo de fundamentales.</p>
+                    </a>
+                    <a href="https://stockcharts.com/" target="_blank" class="group block p-8 rounded-3xl card-glass">
+                        <h4 class="text-xl font-bold text-white group-hover:text-red-400 mb-3">StockCharts</h4>
+                        <p class="text-red-100/40 text-sm leading-relaxed">Herramientas clásicas de charting técnico.</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: EMPRESAS -->
+        <section id="empresas" class="section-content bg-[#1a1625] min-h-screen py-20">
+            <div class="container mx-auto px-6">
+                <div class="flex items-center mb-12">
+                    <div class="w-2 h-10 bg-purple-700 rounded-full mr-5"></div>
+                    <h2 class="text-4xl font-black text-white uppercase tracking-tighter">Sectores Bursátiles</h2>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <a href="#" class="group block p-6 rounded-2xl card-glass">
+                        <h3 class="text-lg font-bold text-white group-hover:text-orange-400 transition-colors">Energy</h3>
+                        <p class="text-purple-300/60 text-[10px] font-bold uppercase tracking-widest mb-2">Energía</p>
+                    </a>
+                    <a href="#" class="group block p-6 rounded-2xl card-glass">
+                        <h3 class="text-lg font-bold text-white group-hover:text-orange-400 transition-colors">Materials</h3>
+                        <p class="text-purple-300/60 text-[10px] font-bold uppercase tracking-widest mb-2">Materiales</p>
+                    </a>
+                    <a href="#" class="group block p-6 rounded-2xl card-glass">
+                        <h3 class="text-lg font-bold text-white group-hover:text-orange-400 transition-colors">Industrials</h3>
+                        <p class="text-purple-300/60 text-[10px] font-bold uppercase tracking-widest mb-2">Industriales</p>
+                    </a>
+                    <a href="#" class="group block p-6 rounded-2xl card-glass">
+                        <h3 class="text-lg font-bold text-white group-hover:text-orange-400 transition-colors">Consumer Discretionary</h3>
+                        <p class="text-purple-300/60 text-[10px] font-bold uppercase tracking-widest mb-2">Consumo Discrecional</p>
+                    </a>
+                    <a href="#" class="group block p-6 rounded-2xl card-glass">
+                        <h3 class="text-lg font-bold text-white group-hover:text-orange-400 transition-colors">Consumer Staples</h3>
+                        <p class="text-purple-300/60 text-[10px] font-bold uppercase tracking-widest mb-2">Bienes de Consumo</p>
+                    </a>
+                    <a href="#" class="group block p-6 rounded-2xl card-glass">
+                        <h3 class="text-lg font-bold text-white group-hover:text-orange-400 transition-colors">Health Care</h3>
+                        <p class="text-purple-300/60 text-[10px] font-bold uppercase tracking-widest mb-2">Salud</p>
+                    </a>
+                    <a href="#" class="group block p-6 rounded-2xl card-glass">
+                        <h3 class="text-lg font-bold text-white group-hover:text-orange-400 transition-colors">Financials</h3>
+                        <p class="text-purple-300/60 text-[10px] font-bold uppercase tracking-widest mb-2">Finanzas</p>
+                    </a>
+                    <a href="#" class="group block p-6 rounded-2xl card-glass">
+                        <h3 class="text-lg font-bold text-white group-hover:text-orange-400 transition-colors">Information Technology</h3>
+                        <p class="text-purple-300/60 text-[10px] font-bold uppercase tracking-widest mb-2">IT</p>
+                    </a>
+                    <a href="#" class="group block p-6 rounded-2xl card-glass">
+                        <h3 class="text-lg font-bold text-white group-hover:text-orange-400 transition-colors">Communication Services</h3>
+                        <p class="text-purple-300/60 text-[10px] font-bold uppercase tracking-widest mb-2">Comunicación</p>
+                    </a>
+                    <a href="#" class="group block p-6 rounded-2xl card-glass">
+                        <h3 class="text-lg font-bold text-white group-hover:text-orange-400 transition-colors">Utilities</h3>
+                        <p class="text-purple-300/60 text-[10px] font-bold uppercase tracking-widest mb-2">Servicios Públicos</p>
+                    </a>
+                    <a href="#" class="group block p-6 rounded-2xl card-glass">
+                        <h3 class="text-lg font-bold text-white group-hover:text-orange-400 transition-colors">Real Estate</h3>
+                        <p class="text-purple-300/60 text-[10px] font-bold uppercase tracking-widest mb-2">Bienes Raíces</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-black/40 border-t border-white/5 py-12">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-orange-600 text-[10px] font-black uppercase tracking-[0.3em] mb-4">Inteligencia de Datos Financieros</p>
+            <p class="text-zinc-600 text-[10px] uppercase">© 2026 Dashboard Premium. Operativa segura.</p>
+        </div>
+    </footer>
+
+    <script>
+        function showSection(sectionId) {
+            document.querySelectorAll('.section-content').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+                if(link.getAttribute('data-section') === sectionId) {
+                    link.classList.add('active');
+                }
+            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        /**
+         * Actualiza la fecha y la hora en el contenedor correspondiente.
+         * Se incluye el formato de hora local con segundos.
+         */
+        function updateDateTime() {
+            const dateElement = document.getElementById('current-date');
+            if (dateElement) {
+                const now = new Date();
+                const options = { 
+                    weekday: 'long', 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit'
+                };
+                const dateTimeString = now.toLocaleDateString('es-ES', options);
+                
+                // Capitalización de la primera letra (día de la semana)
+                dateElement.textContent = dateTimeString.charAt(0).toUpperCase() + dateTimeString.slice(1);
+            }
+        }
+
+        // Inicialización al cargar la página
+        window.onload = function() {
+            updateDateTime();
+            // Establece un intervalo para actualizar cada segundo (1000ms)
+            setInterval(updateDateTime, 1000);
+        };
+    </script>
+
+</body>
+</html>

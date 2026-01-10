@@ -83,7 +83,12 @@
     <!-- Header Naranja Terminal -->
     <header class="bg-orange-700 text-white shadow-2xl sticky top-0 z-50">
         <div class="container mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center">
-            <div class="flex items-center">
+            <div class="flex items-center space-x-6">
+                <!-- Botón de Retorno a la web principal -->
+                <a href="URL_DE_RETORNO" class="bg-orange-800 hover:bg-orange-900 px-4 py-2 rounded-lg text-xs font-bold uppercase transition-colors flex items-center group">
+                    <span class="mr-2 transition-transform group-hover:-translate-x-1">←</span> Volver
+                </a>
+                
                 <div class="flex flex-col">
                     <h1 class="text-xl font-bold tracking-tight uppercase leading-none mb-2">Equity Research - Financials</h1>
                     <div id="current-date" class="date-container md:inline-flex hidden">
@@ -105,7 +110,7 @@
 
     <main class="flex-grow">
         
-        <!-- SECCIÓN 1: BANCA (Fondo Azul Noche) -->
+        <!-- SECCIÓN 1: BANCA -->
         <section id="banca" class="section-content active bg-[#0f172a] min-h-screen py-16">
             <div class="container mx-auto px-6">
                 <div class="flex items-center mb-10">
@@ -114,7 +119,6 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Ejemplo de Tesis Bancaria -->
                     <a href="#" class="group card-thesis p-8 rounded-3xl">
                         <div class="flex justify-between items-start mb-4">
                             <span class="ticker-badge">SAN.MC</span>
@@ -132,7 +136,7 @@
             </div>
         </section>
 
-        <!-- SECCIÓN 2: SEGUROS (Fondo Marrón Tierra) -->
+        <!-- SECCIÓN 2: SEGUROS -->
         <section id="seguros" class="section-content bg-[#1c1917] min-h-screen py-16">
             <div class="container mx-auto px-6">
                 <div class="flex items-center mb-10">
@@ -157,7 +161,7 @@
             </div>
         </section>
 
-        <!-- SECCIÓN 3: ASSET MANAGEMENT (Fondo Granate Profundo) -->
+        <!-- SECCIÓN 3: ASSET MANAGEMENT -->
         <section id="gestion" class="section-content bg-[#2d1616] min-h-screen py-16">
             <div class="container mx-auto px-6">
                 <div class="flex items-center mb-10">
@@ -182,7 +186,7 @@
             </div>
         </section>
 
-        <!-- SECCIÓN 4: FINTECH (Fondo Violeta Sombrío) -->
+        <!-- SECCIÓN 4: FINTECH -->
         <section id="fintech" class="section-content bg-[#1a1625] min-h-screen py-16">
             <div class="container mx-auto px-6">
                 <div class="flex items-center mb-10">

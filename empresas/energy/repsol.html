@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tesis de Inversión: Repsol (REP) - Enero 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .nav-item.active { background-color: #fca5a5; color: #7f1d1d; border-right: 4px solid #b91c1c; }
+        /* Custom scrollbar for tables */
+        .custom-scroll::-webkit-scrollbar { height: 8px; }
+        .custom-scroll::-webkit-scrollbar-track { background: #f1f1f1; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        .custom-scroll::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 h-screen flex overflow-hidden">
+
+    <!-- Sidebar Navigation -->
+    <aside class="w-64 bg-white border-r border-slate-200 flex flex-col hidden md:flex z-10">
+        <div class="p-6 border-b border-slate-100">
+            <h1 class="text-2xl font-bold text-orange-600 tracking-tight">REP Research</h1>
+            <p class="text-xs text-slate-500 mt-1">Informe: 10 Ene 2026</p>
+        </div>
+        <nav class="flex-1 overflow-y-auto py-4">
+            <button onclick="showTab('resumen')" class="nav-item active w-full text-left px-6 py-3 text-sm font-medium hover:bg-orange-50 transition-colors flex items-center gap-3 text-slate-600">
+                <i data-lucide="layout-dashboard" class="w-4 h-4"></i> Resumen Ejecutivo
+            </button>
+            <button onclick="showTab('tesis')" class="nav-item w-full text-left px-6 py-3 text-sm font-medium hover:bg-orange-50 transition-colors flex items-center gap-3 text-slate-600">
+                <i data-lucide="book-open" class="w-4 h-4"></i> Pilares de la Tesis
+            </button>
+            <button onclick="showTab('negocio')" class="nav-item w-full text-left px-6 py-3 text-sm font-medium hover:bg-orange-50 transition-colors flex items-center gap-3 text-slate-600">
+                <i data-lucide="briefcase" class="w-4 h-4"></i> Modelo de Negocio
+            </button>
+            <button onclick="showTab('financiero')" class="nav-item w-full text-left px-6 py-3 text-sm font-medium hover:bg-orange-50 transition-colors flex items-center gap-3 text-slate-600">
+                <i data-lucide="bar-chart-3" class="w-4 h-4"></i> Datos Financieros
+            </button>
+            <button onclick="showTab('valoracion')" class="nav-item w-full text-left px-6 py-3 text-sm font-medium hover:bg-orange-50 transition-colors flex items-center gap-3 text-slate-600">
+                <i data-lucide="scale" class="w-4 h-4"></i> Valoración y Pares
+            </button>
+            <button onclick="showTab('escenarios')" class="nav-item w-full text-left px-6 py-3 text-sm font-medium hover:bg-orange-50 transition-colors flex items-center gap-3 text-slate-600">
+                <i data-lucide="target" class="w-4 h-4"></i> Escenarios y Precio
+            </button>
+            <button onclick="showTab('riesgos')" class="nav-item w-full text-left px-6 py-3 text-sm font-medium hover:bg-orange-50 transition-colors flex items-center gap-3 text-slate-600">
+                <i data-lucide="alert-triangle" class="w-4 h-4"></i> Riesgos
+            </button>
+        </nav>
+        <div class="p-4 border-t border-slate-100 bg-slate-50">
+            <div class="flex items-center gap-2 text-xs text-slate-500">
+                <i data-lucide="user" class="w-3 h-3"></i>
+                <span>Analista Senior (Energía)</span>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Mobile Header -->
+    <div class="md:hidden fixed top-0 left-0 w-full bg-white border-b border-slate-200 z-20 p-4 flex justify-between items-center">
+        <h1 class="font-bold text-orange-600">REP Research</h1>
+        <button onclick="document.querySelector('aside').classList.toggle('hidden'); document.querySelector('aside').classList.toggle('absolute'); document.querySelector('aside').classList.toggle('h-full');" class="p-2 bg-slate-100 rounded">
+            <i data-lucide="menu" class="w-5 h-5"></i>
+        </button>
+    </div>
+
+    <!-- Main Content -->
+    <main class="flex-1 overflow-y-auto p-4 md:p-8 pt-20 md:pt-8 bg-slate-50">
+        
+        <!-- Tab: Resumen Ejecutivo -->
+        <div id="resumen" class="tab-content active space-y-6">
+            <!-- Header Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                    <div class="text-xs font-semibold text-slate-400 uppercase">Recomendación</div>
+                    <div class="text-2xl font-bold text-green-600 mt-1">COMPRA FUERTE</div>
+                    <div class="text-xs text-slate-500 mt-2">Sobreponderar</div>
+                </div>
+                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                    <div class="text-xs font-semibold text-slate-400 uppercase">Precio Actual</div>
+                    <div class="text-2xl font-bold text-slate-800 mt-1">€16.50</div>
+                    <div class="text-xs text-slate-500 mt-2">Al 10/01/2026</div>
+                </div>
+                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm border-l-4 border-l-blue-500">
+                    <div class="text-xs font-semibold text-slate-400 uppercase">Precio Objetivo (Base)</div>
+                    <div class="text-2xl font-bold text-blue-600 mt-1">€19.00</div>
+                    <div class="text-xs text-slate-500 mt-2">Upside potencial: +15%</div>
+                </div>
+                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm border-l-4 border-l-emerald-500">
+                    <div class="text-xs font-semibold text-slate-400 uppercase">Precio Objetivo (Bull)</div>
+                    <div class="text-2xl font-bold text-emerald-600 mt-1">€22.50</div>
+                    <div class="text-xs text-slate-500 mt-2">Upside potencial: +36%</div>
+                </div>
+            </div>
+
+            <!-- Main Thesis Box -->
+            <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+                <div class="bg-orange-600 px-6 py-4 border-b border-orange-700">
+                    <h2 class="text-lg font-bold text-white flex items-center gap-2">
+                        <i data-lucide="file-text" class="w-5 h-5"></i> La Asimetría del Valor
+                    </h2>
+                </div>
+                <div class="p-6 md:p-8 space-y-4">
+                    <p class="text-slate-700 leading-relaxed">
+                        Esta tesis de inversión articula una visión constructiva y de alta convicción sobre <strong>Repsol S.A.</strong>, basada en una confluencia única de factores fundamentales, regulatorios y geopolíticos cristalizados en la primera semana de enero de 2026.
+                    </p>
+                    <p class="text-slate-700 leading-relaxed">
+                        A pesar de cotizar en el entorno de los <strong>€16.50</strong>, el mercado continúa descontando un escenario excesivamente conservador. Ignora la opcionalidad masiva surgida en Latinoamérica (cambio de régimen en Venezuela) y la mejora estructural del marco fiscal en España (RD-ley 16/2025). Repsol no es solo una petrolera; es una plataforma multienergética con una resiliencia de caja superior.
+                    </p>
+                    <div class="mt-6 p-4 bg-orange-50 rounded-lg border border-orange-100">
+                        <h3 class="font-semibold text-orange-800 mb-2">Catalizadores Clave (Enero 2026):</h3>
+                        <ul class="list-disc list-inside space-y-1 text-sm text-orange-900">
+                            <li><strong>3 Enero:</strong> Captura de Nicolás Maduro.</li>
+                            <li><strong>9 Enero:</strong> Reunión Trump-Imaz en la Casa Blanca. Promesa de "seguridad total".</li>
+                            <li><strong>Regulación:</strong> Deducciones fiscales aprobadas en España desbloquean inversión.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab: Pilares de la Tesis -->
+        <div id="tesis" class="tab-content space-y-6">
+            <h2 class="text-xl font-bold text-slate-800 mb-4">Los 4 Pilares Fundamentales</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Pilar 1 -->
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center mb-4 text-red-600">
+                        <i data-lucide="globe" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-800 mb-2">1. El Catalizador Venezolano</h3>
+                    <p class="text-sm text-slate-600 mb-3 leading-relaxed">
+                        Lo que era un "stranded asset" valorado a cero, ahora es una opción real de cobro. Repsol posee derechos de cobro (deuda histórica) compartidos con Eni por <strong>~$6.000M</strong>.
+                    </p>
+                    <div class="bg-slate-50 p-3 rounded text-xs text-slate-500">
+                        <strong>Impacto:</strong> Recuperar su parte (~$3.000M) equivaldría a casi el 15% de su capitalización bursátil.
+                    </div>
+                </div>
+
+                <!-- Pilar 2 -->
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mb-4 text-blue-600">
+                        <i data-lucide="landmark" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-800 mb-2">2. Eficiencia Fiscal en España</h3>
+                    <p class="text-sm text-slate-600 mb-3 leading-relaxed">
+                        Fin de la incertidumbre con el RD-ley 16/2025. El gravamen energético ahora permite <strong>deducciones por inversiones en descarbonización</strong>.
+                    </p>
+                    <div class="bg-slate-50 p-3 rounded text-xs text-slate-500">
+                        <strong>Impacto:</strong> Protege la caja y reactiva proyectos industriales (hidrógeno, ecocombustibles) en Cartagena, Tarragona y Bilbao.
+                    </div>
+                </div>
+
+                <!-- Pilar 3 -->
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mb-4 text-green-600">
+                        <i data-lucide="percent" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-800 mb-2">3. Valoración Asimétrica</h3>
+                    <p class="text-sm text-slate-600 mb-3 leading-relaxed">
+                        Cotiza a un múltiplo <strong>EV/EBITDA 2026E de 3.0x - 3.2x</strong>, un descuento significativo frente a pares como Eni (4.0x) o TotalEnergies (4.2x).
+                    </p>
+                    <div class="bg-slate-50 p-3 rounded text-xs text-slate-500">
+                        <strong>Impacto:</strong> Oportunidad de entrada con margen de seguridad. Yield > 6% + Recompras.
+                    </div>
+                </div>
+
+                <!-- Pilar 4 -->
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center mb-4 text-orange-600">
+                        <i data-lucide="shield-check" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-800 mb-2">4. Resiliencia Integrada</h3>
+                    <p class="text-sm text-slate-600 mb-3 leading-relaxed">
+                        A pesar de precios de crudo a la baja en 2025, el Flujo de Caja Operativo (CFFO) creció un <strong>15% interanual</strong> (€4.300M en 9M 2025).
+                    </p>
+                    <div class="bg-slate-50 p-3 rounded text-xs text-slate-500">
+                        <strong>Impacto:</strong> Valida la estrategia de cobertura natural del modelo de negocio integrado.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab: Modelo de Negocio -->
+        <div id="negocio" class="tab-content space-y-6">
+            <h2 class="text-xl font-bold text-slate-800 mb-4">Segmentos Operativos</h2>
+
+            <div class="space-y-4">
+                <!-- Upstream -->
+                <details class="group bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden" open>
+                    <summary class="flex items-center justify-between p-4 cursor-pointer bg-slate-50 group-hover:bg-slate-100 transition-colors">
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="droplet" class="text-slate-500"></i>
+                            <span class="font-bold text-slate-700">Upstream (Exploración y Producción)</span>
+                        </div>
+                        <i data-lucide="chevron-down" class="text-slate-400 group-open:rotate-180 transition-transform"></i>
+                    </summary>
+                    <div class="p-6 border-t border-slate-200 text-sm text-slate-600 space-y-3">
+                        <p><strong>Estrategia:</strong> Valor sobre Volumen. Foco en rentabilidad por barril y reducción de carbono.</p>
+                        <ul class="list-disc list-inside pl-2 space-y-1">
+                            <li><strong>Norteamérica (EE.UU.):</strong> Activos "ciclo corto" (shale) en Eagle Ford y Marcellus. Activos convencionales en Golfo de México y Alaska (Pikka).</li>
+                            <li><strong>Reino Unido (NEO NEXT):</strong> Fusión de activos completada en 2025 (45% JV). Desconsolida volatilidad y optimiza fiscalidad.</li>
+                            <li><strong>Producción 2026E:</strong> Rango 550.000 - 560.000 barriles equivalentes/día.</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <!-- Industrial -->
+                <details class="group bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+                    <summary class="flex items-center justify-between p-4 cursor-pointer bg-slate-50 group-hover:bg-slate-100 transition-colors">
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="factory" class="text-slate-500"></i>
+                            <span class="font-bold text-slate-700">Industrial (Refino y Química)</span>
+                        </div>
+                        <i data-lucide="chevron-down" class="text-slate-400 group-open:rotate-180 transition-transform"></i>
+                    </summary>
+                    <div class="p-6 border-t border-slate-200 text-sm text-slate-600 space-y-3">
+                        <p><strong>Estrategia:</strong> Transformación en "Hubs Multienergéticos".</p>
+                        <ul class="list-disc list-inside pl-2 space-y-1">
+                            <li><strong>Sistema Integrado:</strong> 5 refinerías en España (Cartagena, Bilbao, Tarragona, Puertollano, Coruña).</li>
+                            <li><strong>Biocombustibles (C-43 Cartagena):</strong> 250k toneladas/año de HVO/SAF. Márgenes ligados a regulación, no al petróleo.</li>
+                            <li><strong>Química:</strong> Foco en productos de alto valor y reciclaje químico.</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <!-- Cliente -->
+                <details class="group bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+                    <summary class="flex items-center justify-between p-4 cursor-pointer bg-slate-50 group-hover:bg-slate-100 transition-colors">
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="users" class="text-slate-500"></i>
+                            <span class="font-bold text-slate-700">Cliente (Comercial y Movilidad)</span>
+                        </div>
+                        <i data-lucide="chevron-down" class="text-slate-400 group-open:rotate-180 transition-transform"></i>
+                    </summary>
+                    <div class="p-6 border-t border-slate-200 text-sm text-slate-600 space-y-3">
+                        <p><strong>Estrategia:</strong> Foso económico digital y fidelización.</p>
+                        <ul class="list-disc list-inside pl-2 space-y-1">
+                            <li><strong>Waylet:</strong> >8 millones de usuarios activos. Reduce la sensibilidad al precio.</li>
+                            <li><strong>Multienergía Hogar:</strong> >2.4 millones de clientes (Luz y Gas). Reduce churn mediante descuentos cruzados.</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <!-- Low Carbon -->
+                <details class="group bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+                    <summary class="flex items-center justify-between p-4 cursor-pointer bg-slate-50 group-hover:bg-slate-100 transition-colors">
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="sun" class="text-slate-500"></i>
+                            <span class="font-bold text-slate-700">Generación Baja en Carbono</span>
+                        </div>
+                        <i data-lucide="chevron-down" class="text-slate-400 group-open:rotate-180 transition-transform"></i>
+                    </summary>
+                    <div class="p-6 border-t border-slate-200 text-sm text-slate-600 space-y-3">
+                        <p><strong>Estrategia:</strong> Rotación de activos (Modelo "Asset Rotation").</p>
+                        <ul class="list-disc list-inside pl-2 space-y-1">
+                            <li><strong>Capacidad:</strong> Cercana a 6 GW instalados.</li>
+                            <li><strong>Modelo Financiero:</strong> Venta de participaciones minoritarias (49%) a socios (Pontegadea, EIP) para cristalizar valor y financiar crecimiento (ROCE doble dígito).</li>
+                        </ul>
+                    </div>
+                </details>
+            </div>
+        </div>
+
+        <!-- Tab: Financiero -->
+        <div id="financiero" class="tab-content space-y-6">
+            <h2 class="text-xl font-bold text-slate-800 mb-4">Análisis Financiero (Datos 9M 2025)</h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- P&L Table -->
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                    <h3 class="font-bold text-slate-700 mb-4 flex items-center gap-2">
+                        <i data-lucide="trending-up" class="w-4 h-4 text-orange-600"></i> Cuenta de Resultados
+                    </h3>
+                    <div class="overflow-x-auto custom-scroll">
+                        <table class="w-full text-sm text-left">
+                            <thead class="text-xs text-slate-500 uppercase bg-slate-50">
+                                <tr>
+                                    <th class="px-4 py-2">Métrica</th>
+                                    <th class="px-4 py-2">Valor</th>
+                                    <th class="px-4 py-2">Nota</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100">
+                                <tr>
+                                    <td class="px-4 py-3 font-medium">Resultado Neto</td>
+                                    <td class="px-4 py-3">€1.177 M</td>
+                                    <td class="px-4 py-3 text-xs text-slate-500">-34.3% vs año anterior (Efecto Inventario)</td>
+                                </tr>
+                                <tr class="bg-orange-50/50">
+                                    <td class="px-4 py-3 font-medium text-orange-800">Resultado Ajustado</td>
+                                    <td class="px-4 py-3 font-bold text-orange-800">€2.173 M</td>
+                                    <td class="px-4 py-3 text-xs text-slate-500">Dato clave para analistas</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-3 font-medium">Res. Ajustado Q3</td>
+                                    <td class="px-4 py-3">€820 M</td>
+                                    <td class="px-4 py-3 text-xs text-green-600 font-bold">+47% Interanual</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Cash Flow Table -->
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                    <h3 class="font-bold text-slate-700 mb-4 flex items-center gap-2">
+                        <i data-lucide="banknote" class="w-4 h-4 text-orange-600"></i> Flujo de Caja (Cash Flow)
+                    </h3>
+                    <div class="overflow-x-auto custom-scroll">
+                        <table class="w-full text-sm text-left">
+                            <thead class="text-xs text-slate-500 uppercase bg-slate-50">
+                                <tr>
+                                    <th class="px-4 py-2">Métrica</th>
+                                    <th class="px-4 py-2">Valor</th>
+                                    <th class="px-4 py-2">Nota</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100">
+                                <tr class="bg-green-50/50">
+                                    <td class="px-4 py-3 font-medium text-green-800">CFFO (Operativo)</td>
+                                    <td class="px-4 py-3 font-bold text-green-800">€4.300 M</td>
+                                    <td class="px-4 py-3 text-xs text-slate-500">+15% Interanual</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-3 font-medium">CAPEX (Inversión)</td>
+                                    <td class="px-4 py-3">€2.500 M</td>
+                                    <td class="px-4 py-3 text-xs text-slate-500">Incluye rotación de activos</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="mt-4 text-xs text-slate-500 italic bg-slate-50 p-3 rounded">
+                        "El CFFO cubre holgadamente CAPEX, dividendos y recompras. No necesita deuda para pagar a accionistas."
+                    </div>
+                </div>
+            </div>
+
+            <!-- Balance Sheet Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                <div class="bg-white p-4 rounded-xl border border-slate-200 text-center">
+                    <div class="text-xs font-semibold text-slate-400 uppercase">Deuda Neta (Q3 2025)</div>
+                    <div class="text-xl font-bold text-slate-800 mt-1">€6.890 M</div>
+                    <div class="text-xs text-slate-500 mt-2">Aumento por consolidación NEO Energy (M&A)</div>
+                </div>
+                <div class="bg-white p-4 rounded-xl border border-slate-200 text-center">
+                    <div class="text-xs font-semibold text-slate-400 uppercase">Liquidez Total</div>
+                    <div class="text-xl font-bold text-slate-800 mt-1">€10.249 M</div>
+                    <div class="text-xs text-slate-500 mt-2">Cubre 3.67x vencimientos a corto plazo</div>
+                </div>
+                <div class="bg-white p-4 rounded-xl border border-slate-200 text-center">
+                    <div class="text-xs font-semibold text-slate-400 uppercase">Dividendo Yield</div>
+                    <div class="text-xl font-bold text-slate-800 mt-1">6.06%</div>
+                    <div class="text-xs text-slate-500 mt-2">Base efectivo (€1.00/acción)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab: Valoración -->
+        <div id="valoracion" class="tab-content space-y-6">
+            <h2 class="text-xl font-bold text-slate-800 mb-4">Análisis Comparativo (Peer Group 2026E)</h2>
+            <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm text-left">
+                        <thead class="text-xs text-slate-500 uppercase bg-slate-50 border-b border-slate-200">
+                            <tr>
+                                <th class="px-6 py-4">Empresa</th>
+                                <th class="px-6 py-4">EV/EBITDA</th>
+                                <th class="px-6 py-4">P/E (Precio/Beneficio)</th>
+                                <th class="px-6 py-4">Dividend Yield</th>
+                                <th class="px-6 py-4">Riesgo / Catalizador</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100">
+                            <tr class="bg-orange-50/30 border-l-4 border-l-orange-500">
+                                <td class="px-6 py-4 font-bold text-slate-800">Repsol (REP)</td>
+                                <td class="px-6 py-4 font-bold text-orange-600">3.0x - 3.2x</td>
+                                <td class="px-6 py-4">5.8x</td>
+                                <td class="px-6 py-4">6.1%</td>
+                                <td class="px-6 py-4 text-xs">Exposición Alta a Venezuela (Upside)</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-medium text-slate-700">Eni (ENI)</td>
+                                <td class="px-6 py-4">~4.0x</td>
+                                <td class="px-6 py-4">~7.8x</td>
+                                <td class="px-6 py-4">5.8%</td>
+                                <td class="px-6 py-4 text-xs">Socio en Cardón IV (Media)</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-medium text-slate-700">TotalEnergies (TTE)</td>
+                                <td class="px-6 py-4">~4.2x</td>
+                                <td class="px-6 py-4">~7.5x</td>
+                                <td class="px-6 py-4">5.0%</td>
+                                <td class="px-6 py-4 text-xs">Bajo riesgo regulatorio</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-medium text-slate-700">Galp (GALP)</td>
+                                <td class="px-6 py-4">~3.5x</td>
+                                <td class="px-6 py-4">~6.5x</td>
+                                <td class="px-6 py-4">4.5%</td>
+                                <td class="px-6 py-4 text-xs">Exposición Venezuela Nula</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="bg-slate-100 p-4 rounded-lg text-sm text-slate-600 border border-slate-200">
+                <p><strong>Interpretación:</strong> Repsol es la acción más barata del grupo. El descuento no se justifica dada la calidad del refino y el potencial de Venezuela. Jefferies (8 Ene 2026) elevó a Repsol a "BUY" mientras degradaba a Galp.</p>
+            </div>
+        </div>
+
+        <!-- Tab: Escenarios -->
+        <div id="escenarios" class="tab-content space-y-6">
+            <h2 class="text-xl font-bold text-slate-800 mb-4">Proyección de Precio (12-18 Meses)</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Bear Case -->
+                <div class="bg-white p-6 rounded-xl border border-red-200 shadow-sm relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-red-100 text-red-800 px-3 py-1 text-xs font-bold rounded-bl">Prob: 20%</div>
+                    <h3 class="text-lg font-bold text-red-700 mb-2">Escenario Pesimista</h3>
+                    <div class="text-3xl font-bold text-slate-800 mb-4">€12.50 <span class="text-sm font-normal text-red-500">(-24%)</span></div>
+                    <ul class="text-sm text-slate-600 space-y-2 list-disc list-inside">
+                        <li>Caos en Venezuela, sin recuperación de deuda.</li>
+                        <li>Brent cae a $60.</li>
+                        <li>Márgenes refino $4/barril.</li>
+                        <li>Impuesto español sin deducciones efectivas.</li>
+                    </ul>
+                </div>
+
+                <!-- Base Case -->
+                <div class="bg-white p-6 rounded-xl border border-blue-200 shadow-sm relative overflow-hidden ring-2 ring-blue-500 ring-opacity-50">
+                    <div class="absolute top-0 right-0 bg-blue-100 text-blue-800 px-3 py-1 text-xs font-bold rounded-bl">Prob: 50%</div>
+                    <h3 class="text-lg font-bold text-blue-700 mb-2">Escenario Base</h3>
+                    <div class="text-3xl font-bold text-slate-800 mb-4">€19.00 <span class="text-sm font-normal text-blue-500">(+15%)</span></div>
+                    <ul class="text-sm text-slate-600 space-y-2 list-disc list-inside">
+                        <li>Brent $70-75.</li>
+                        <li>Márgenes refino normalizados ($6-7).</li>
+                        <li>Venezuela: Pagos simbólicos/swaps (20-30% recuperación).</li>
+                        <li>Re-rating a 3.5x - 4.0x EV/EBITDA.</li>
+                    </ul>
+                </div>
+
+                <!-- Bull Case -->
+                <div class="bg-white p-6 rounded-xl border border-emerald-200 shadow-sm relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-emerald-100 text-emerald-800 px-3 py-1 text-xs font-bold rounded-bl">Prob: 30%</div>
+                    <h3 class="text-lg font-bold text-emerald-700 mb-2">Escenario Optimista</h3>
+                    <div class="text-3xl font-bold text-slate-800 mb-4">€22.50 <span class="text-sm font-normal text-emerald-500">(+36%)</span></div>
+                    <ul class="text-sm text-slate-600 space-y-2 list-disc list-inside">
+                        <li>Acuerdo total EE.UU.-Venezuela: Pago íntegro deuda ($6B).</li>
+                        <li>Brent > $80.</li>
+                        <li>Spin-off o IPO parcial de Low Carbon.</li>
+                        <li>Múltiplos a 4.5x (cierra brecha con Total).</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="mt-6 p-4 bg-orange-50 rounded-lg border border-orange-100 text-center">
+                <p class="text-orange-900 font-medium">Probabilidad combinada Base + Bull = 80%. Asimetría muy positiva.</p>
+            </div>
+        </div>
+
+        <!-- Tab: Riesgos -->
+        <div id="riesgos" class="tab-content space-y-6">
+            <h2 class="text-xl font-bold text-slate-800 mb-4">Matriz de Riesgos y Mitigantes</h2>
+            
+            <div class="space-y-4">
+                <div class="bg-white p-5 rounded-xl border-l-4 border-red-500 shadow-sm">
+                    <h3 class="font-bold text-slate-800">1. Ejecución en Venezuela</h3>
+                    <div class="mt-2 grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="text-sm text-slate-600">
+                            <span class="font-semibold text-red-600">Amenaza:</span> Infraestructura en ruinas, inestabilidad política resurge, reactivación lenta.
+                        </div>
+                        <div class="text-sm text-slate-600">
+                            <span class="font-semibold text-green-600">Mitigante:</span> Exposición ya provisionada (descontada). Activo principal es Gas (Cardón IV), vital para el país y menos sancionable.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-5 rounded-xl border-l-4 border-yellow-500 shadow-sm">
+                    <h3 class="font-bold text-slate-800">2. Caída Precio Petróleo</h3>
+                    <div class="mt-2 grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="text-sm text-slate-600">
+                            <span class="font-semibold text-yellow-600">Amenaza:</span> Brent cae a $50-$60 por oferta OPEP o recesión.
+                        </div>
+                        <div class="text-sm text-slate-600">
+                            <span class="font-semibold text-green-600">Mitigante:</span> Breakeven de flujo de caja < $50/barril. Modelo integrado (Downstream cubre Upstream).
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-5 rounded-xl border-l-4 border-slate-500 shadow-sm">
+                    <h3 class="font-bold text-slate-800">3. Inestabilidad Regulatoria</h3>
+                    <div class="mt-2 grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="text-sm text-slate-600">
+                            <span class="font-semibold text-slate-600">Amenaza:</span> Cambios fiscales adicionales en España.
+                        </div>
+                        <div class="text-sm text-slate-600">
+                            <span class="font-semibold text-green-600">Mitigante:</span> Diversificación a EE.UU. (30-40% capital empleado). Nuevo RD-ley alinea intereses Gobierno-Empresa.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Tab Switching Logic
+        function showTab(tabId) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            // Show selected tab content
+            document.getElementById(tabId).classList.add('active');
+
+            // Update nav state
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+                item.classList.remove('bg-orange-50');
+                item.classList.remove('text-orange-700');
+                item.classList.remove('border-r-4');
+                item.classList.remove('border-orange-600');
+                
+                // Add hover classes back for non-active items
+                item.classList.add('hover:bg-orange-50');
+            });
+            
+            // Highlight active nav button logic would be here, 
+            // but inline onclick is simpler for this single-file demo.
+            // Re-adding active class styling dynamically to clicked element isn't strictly needed 
+            // if we just rely on the onclick updating the UI, but let's keep it simple.
+        }
+
+        // Add event listeners to nav items for styling
+        document.querySelectorAll('.nav-item').forEach(button => {
+            button.addEventListener('click', function() {
+                // Reset all buttons style
+                document.querySelectorAll('.nav-item').forEach(btn => {
+                    btn.classList.remove('bg-orange-100', 'text-orange-800', 'border-r-4', 'border-orange-600');
+                });
+                // Set active style
+                this.classList.add('bg-orange-100', 'text-orange-800', 'border-r-4', 'border-orange-600');
+            });
+        });
+        
+        // Trigger first tab active state visually on load
+        document.querySelector('.nav-item').click();
+    </script>
+</body>
+</html>

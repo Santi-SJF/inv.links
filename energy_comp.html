@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tesis de Inversión - Sector Energía</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            color: #f1f5f9;
+            overflow-x: hidden;
+        }
+
+        /* Tarjetas estilo Tesis Energéticas */
+        .card-energy {
+            background-color: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-energy:hover {
+            transform: translateY(-5px);
+            background-color: rgba(255, 255, 255, 0.06);
+            border-color: #fb923c;
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6);
+        }
+
+        .date-container {
+            background-color: rgba(0, 0, 0, 0.15);
+            color: rgba(255, 255, 255, 0.9);
+            border-left: 3px solid rgba(255, 255, 255, 0.3);
+            padding: 0.25rem 0.75rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.025em;
+            display: flex;
+            align-items: center;
+            border-radius: 0 4px 4px 0;
+            min-width: 280px;
+        }
+
+        .section-content {
+            display: none;
+            animation: fadeInPage 0.6s ease-out;
+        }
+
+        .section-content.active {
+            display: block;
+        }
+
+        @keyframes fadeInPage {
+            from { opacity: 0; transform: scale(0.99); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .nav-link.active {
+            background-color: rgba(255, 255, 255, 0.15);
+            border-bottom: 3px solid #fdba74;
+        }
+
+        .ticker-badge {
+            background-color: rgba(251, 146, 60, 0.1);
+            color: #fb923c;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- Header Naranja Terminal -->
+    <header class="bg-orange-700 text-white shadow-2xl sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center">
+            <div class="flex items-center space-x-6">
+                <!-- Botón de Retorno -->
+                <a href="index.html" class="bg-orange-800 hover:bg-orange-900 px-4 py-2 rounded-lg text-xs font-bold uppercase transition-colors flex items-center group">
+                    <span class="mr-2 transition-transform group-hover:-translate-x-1">←</span> Volver
+                </a>
+                
+                <div class="flex flex-col">
+                    <h1 class="text-xl font-bold tracking-tight uppercase leading-none mb-2">Equity Research - Energy</h1>
+                    <div id="current-date" class="date-container md:inline-flex hidden">
+                        <!-- Reloj automático JS -->
+                    </div>
+                </div>
+            </div>
+            
+            <nav class="mt-4 md:mt-0">
+                <ul id="main-nav" class="flex space-x-1 text-xs font-bold uppercase tracking-wider">
+                    <li><button onclick="showSection('oilgas')" class="nav-link px-4 py-3 hover:bg-orange-600 transition active" data-section="oilgas">Oil & Gas</button></li>
+                    <li><button onclick="showSection('renewables')" class="nav-link px-4 py-3 hover:bg-orange-600 transition" data-section="renewables">Renewables</button></li>
+                    <li><button onclick="showSection('utilities')" class="nav-link px-4 py-3 hover:bg-orange-600 transition" data-section="utilities">Nuclear & Utils</button></li>
+                    <li><button onclick="showSection('infrastructure')" class="nav-link px-4 py-3 hover:bg-orange-600 transition" data-section="infrastructure">Infrastructure</button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        
+        <!-- SECCIÓN 1: OIL & GAS (Fondo Gris Carbón/Azulado) -->
+        <section id="oilgas" class="section-content active bg-[#0f172a] min-h-screen py-16">
+            <div class="container mx-auto px-6">
+                <div class="flex items-center mb-10">
+                    <div class="w-2 h-10 bg-orange-500 rounded-full mr-5"></div>
+                    <h2 class="text-3xl font-black text-white uppercase tracking-tighter">Oil, Gas & Consumables</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Ejemplo de Tesis O&G -->
+                    <a href="empresas/energy/repsol.html" class="group card-energy p-8 rounded-3xl">
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="ticker-badge">REP.MC</span>
+                            <span class="text-[10px] text-slate-500 uppercase font-bold tracking-widest">Tesis Activa</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white group-hover:text-orange-400 mb-3 transition-colors">Repsol S.A.</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed flex-grow">
+                            Análisis del proceso de descarbonización, generación de caja libre y política de retribución al accionista.
+                        </p>
+                        <div class="mt-8 pt-4 border-t border-white/5 text-orange-400 font-bold text-xs uppercase flex justify-between items-center">
+                            Ver Análisis →
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 2: RENEWABLES (Fondo Verde Bosque Profundo) -->
+        <section id="renewables" class="section-content bg-[#062016] min-h-screen py-16">
+            <div class="container mx-auto px-6">
+                <div class="flex items-center mb-10">
+                    <div class="w-2 h-10 bg-green-600 rounded-full mr-5"></div>
+                    <h2 class="text-3xl font-black text-white uppercase tracking-tighter">Renewable Energy</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <a href="#" class="group card-energy p-8 rounded-3xl">
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="ticker-badge">FSLR</span>
+                            <span class="text-[10px] text-green-500/50 uppercase font-bold tracking-widest">Solar Tech</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white group-hover:text-green-400 mb-3 transition-colors">First Solar, Inc.</h3>
+                        <p class="text-green-100/40 text-sm leading-relaxed flex-grow">
+                            Tesis sobre el liderazgo en tecnología de capa fina y beneficios bajo el marco de la Inflation Reduction Act (IRA).
+                        </p>
+                        <div class="mt-8 pt-4 border-t border-white/5 text-green-400 font-bold text-xs uppercase">
+                            Leer Documento →
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 3: NUCLEAR & UTILITIES (Fondo Azul Teal Oscuro) -->
+        <section id="utilities" class="section-content bg-[#0a1e24] min-h-screen py-16">
+            <div class="container mx-auto px-6">
+                <div class="flex items-center mb-10">
+                    <div class="w-2 h-10 bg-cyan-600 rounded-full mr-5"></div>
+                    <h2 class="text-3xl font-black text-white uppercase tracking-tighter">Nuclear & Utilities</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <a href="#" class="group card-energy p-8 rounded-3xl">
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="ticker-badge">IBE.MC</span>
+                            <span class="text-[10px] text-cyan-400/50 uppercase font-bold tracking-widest">Networks</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white group-hover:text-cyan-400 mb-3 transition-colors">Iberdrola</h3>
+                        <p class="text-cyan-100/40 text-sm leading-relaxed flex-grow">
+                            Enfoque en la expansión de redes inteligentes y almacenamiento masivo para la estabilidad del grid europeo.
+                        </p>
+                        <div class="mt-8 pt-4 border-t border-white/5 text-orange-400 font-bold text-xs uppercase">
+                            Consultar Tesis →
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 4: INFRASTRUCTURE (Fondo Marrón Oscuro/Cobre) -->
+        <section id="infrastructure" class="section-content bg-[#1c140e] min-h-screen py-16">
+            <div class="container mx-auto px-6">
+                <div class="flex items-center mb-10">
+                    <div class="w-2 h-10 bg-amber-700 rounded-full mr-5"></div>
+                    <h2 class="text-3xl font-black text-white uppercase tracking-tighter">Infrastructure & Storage</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <a href="#" class="group card-energy p-8 rounded-3xl">
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="ticker-badge">ENAG.MC</span>
+                            <span class="text-[10px] text-amber-500/50 uppercase font-bold tracking-widest">Midstream</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white group-hover:text-amber-400 mb-3 transition-colors">Enagás</h3>
+                        <p class="text-amber-100/40 text-sm leading-relaxed flex-grow">
+                            Tesis sobre el papel estratégico del hidrógeno verde y la infraestructura troncal de gas en España.
+                        </p>
+                        <div class="mt-8 pt-4 border-t border-white/5 text-orange-400 font-bold text-xs uppercase">
+                            Abrir Archivo →
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-black/40 border-t border-white/5 py-10">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-orange-600 text-[10px] font-black uppercase tracking-[0.3em] mb-4">Energy Sector Research Dashboard</p>
+            <p class="text-zinc-600 text-[10px] uppercase tracking-widest">Análisis de Commodities • Transición Energética • 2026</p>
+        </div>
+    </footer>
+
+    <script>
+        function showSection(sectionId) {
+            document.querySelectorAll('.section-content').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+                if(link.getAttribute('data-section') === sectionId) {
+                    link.classList.add('active');
+                }
+            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function updateDateTime() {
+            const dateElement = document.getElementById('current-date');
+            if (dateElement) {
+                const now = new Date();
+                const options = { 
+                    weekday: 'long', 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit'
+                };
+                const dateTimeString = now.toLocaleDateString('es-ES', options);
+                dateElement.textContent = dateTimeString.charAt(0).toUpperCase() + dateTimeString.slice(1);
+            }
+        }
+
+        window.onload = function() {
+            updateDateTime();
+            setInterval(updateDateTime, 1000);
+        };
+    </script>
+
+</body>
+</html>

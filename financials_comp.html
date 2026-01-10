@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tesis de Inversión - Sector Financiero</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            color: #f1f5f9;
+            overflow-x: hidden;
+        }
+
+        /* Tarjetas estilo Tesis */
+        .card-thesis {
+            background-color: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-thesis:hover {
+            transform: translateY(-5px);
+            background-color: rgba(255, 255, 255, 0.06);
+            border-color: #fb923c; /* orange-400 */
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Zona de fecha y hora integrada */
+        .date-container {
+            background-color: rgba(0, 0, 0, 0.15);
+            color: rgba(255, 255, 255, 0.9);
+            border-left: 3px solid rgba(255, 255, 255, 0.3);
+            padding: 0.25rem 0.75rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.025em;
+            display: flex;
+            align-items: center;
+            border-radius: 0 4px 4px 0;
+            min-width: 280px;
+        }
+
+        /* Transiciones de sección */
+        .section-content {
+            display: none;
+            animation: fadeInPage 0.6s ease-out;
+        }
+
+        .section-content.active {
+            display: block;
+        }
+
+        @keyframes fadeInPage {
+            from { opacity: 0; transform: scale(0.99); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .nav-link.active {
+            background-color: rgba(255, 255, 255, 0.15);
+            border-bottom: 3px solid #fdba74; /* orange-300 */
+        }
+
+        .ticker-badge {
+            background-color: rgba(251, 146, 60, 0.1);
+            color: #fb923c;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- Header Naranja Terminal -->
+    <header class="bg-orange-700 text-white shadow-2xl sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center">
+            <div class="flex items-center">
+                <div class="flex flex-col">
+                    <h1 class="text-xl font-bold tracking-tight uppercase leading-none mb-2">Equity Research - Financials</h1>
+                    <div id="current-date" class="date-container md:inline-flex hidden">
+                        <!-- Reloj automático JS -->
+                    </div>
+                </div>
+            </div>
+            
+            <nav class="mt-4 md:mt-0">
+                <ul id="main-nav" class="flex space-x-1 text-xs font-bold uppercase tracking-wider">
+                    <li><button onclick="showSection('banca')" class="nav-link px-4 py-3 hover:bg-orange-600 transition active" data-section="banca">Banca</button></li>
+                    <li><button onclick="showSection('seguros')" class="nav-link px-4 py-3 hover:bg-orange-600 transition" data-section="seguros">Seguros</button></li>
+                    <li><button onclick="showSection('gestion')" class="nav-link px-4 py-3 hover:bg-orange-600 transition" data-section="gestion">Asset Management</button></li>
+                    <li><button onclick="showSection('fintech')" class="nav-link px-4 py-3 hover:bg-orange-600 transition" data-section="fintech">Fintech & Spec.</button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        
+        <!-- SECCIÓN 1: BANCA (Fondo Azul Noche) -->
+        <section id="banca" class="section-content active bg-[#0f172a] min-h-screen py-16">
+            <div class="container mx-auto px-6">
+                <div class="flex items-center mb-10">
+                    <div class="w-2 h-10 bg-orange-500 rounded-full mr-5"></div>
+                    <h2 class="text-3xl font-black text-white uppercase tracking-tighter">Banking Sector</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Ejemplo de Tesis Bancaria -->
+                    <a href="#" class="group card-thesis p-8 rounded-3xl">
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="ticker-badge">SAN.MC</span>
+                            <span class="text-[10px] text-slate-500 uppercase font-bold tracking-widest">2026 Q1</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white group-hover:text-orange-400 mb-3 transition-colors">Banco Santander</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed flex-grow">
+                            Tesis basada en la diversificación geográfica y la mejora del margen de interés en Brasil y México.
+                        </p>
+                        <div class="mt-8 pt-4 border-t border-white/5 text-orange-400 font-bold text-xs uppercase flex justify-between items-center">
+                            Ver Tesis Completa <span>→</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 2: SEGUROS (Fondo Marrón Tierra) -->
+        <section id="seguros" class="section-content bg-[#1c1917] min-h-screen py-16">
+            <div class="container mx-auto px-6">
+                <div class="flex items-center mb-10">
+                    <div class="w-2 h-10 bg-orange-600 rounded-full mr-5"></div>
+                    <h2 class="text-3xl font-black text-white uppercase tracking-tighter">Insurance</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <a href="#" class="group card-thesis p-8 rounded-3xl">
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="ticker-badge">MAP.MC</span>
+                            <span class="text-[10px] text-stone-500 uppercase font-bold tracking-widest">Tesis Activa</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white group-hover:text-orange-400 mb-3 transition-colors">Mapfre S.A.</h3>
+                        <p class="text-stone-400 text-sm leading-relaxed flex-grow">
+                            Análisis sobre la resiliencia del negocio de No Vida y el crecimiento en el mercado de reaseguros.
+                        </p>
+                        <div class="mt-8 pt-4 border-t border-white/5 text-orange-400 font-bold text-xs uppercase">
+                            Leer Documento →
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 3: ASSET MANAGEMENT (Fondo Granate Profundo) -->
+        <section id="gestion" class="section-content bg-[#2d1616] min-h-screen py-16">
+            <div class="container mx-auto px-6">
+                <div class="flex items-center mb-10">
+                    <div class="w-2 h-10 bg-red-800 rounded-full mr-5"></div>
+                    <h2 class="text-3xl font-black text-white uppercase tracking-tighter">Asset Management</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <a href="#" class="group card-thesis p-8 rounded-3xl">
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="ticker-badge">BLK</span>
+                            <span class="text-[10px] text-red-400/50 uppercase font-bold tracking-widest">Global Leader</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white group-hover:text-orange-400 mb-3 transition-colors">BlackRock, Inc.</h3>
+                        <p class="text-red-100/40 text-sm leading-relaxed flex-grow">
+                            Tesis sobre el dominio en ETFs (iShares) y la expansión de Aladdin como plataforma tecnológica.
+                        </p>
+                        <div class="mt-8 pt-4 border-t border-white/5 text-orange-400 font-bold text-xs uppercase">
+                            Consultar Análisis →
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 4: FINTECH (Fondo Violeta Sombrío) -->
+        <section id="fintech" class="section-content bg-[#1a1625] min-h-screen py-16">
+            <div class="container mx-auto px-6">
+                <div class="flex items-center mb-10">
+                    <div class="w-2 h-10 bg-purple-700 rounded-full mr-5"></div>
+                    <h2 class="text-3xl font-black text-white uppercase tracking-tighter">Fintech & Specialty</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <a href="#" class="group card-thesis p-8 rounded-3xl">
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="ticker-badge">V</span>
+                            <span class="text-[10px] text-purple-400/50 uppercase font-bold tracking-widest">Growth</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white group-hover:text-orange-400 mb-3 transition-colors">Visa Inc.</h3>
+                        <p class="text-purple-100/40 text-sm leading-relaxed flex-grow">
+                            Análisis de la migración hacia pagos digitales y el potencial de las redes B2B globales.
+                        </p>
+                        <div class="mt-8 pt-4 border-t border-white/5 text-orange-400 font-bold text-xs uppercase">
+                            Abrir Tesis →
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-black/40 border-t border-white/5 py-10">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-orange-600 text-[10px] font-black uppercase tracking-[0.3em] mb-4">Investment Research Dashboard</p>
+            <p class="text-zinc-600 text-[10px] uppercase tracking-widest leading-loose">
+                Confidencial • Uso Privado • Estrategia Financiera 2026
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        function showSection(sectionId) {
+            document.querySelectorAll('.section-content').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+                if(link.getAttribute('data-section') === sectionId) {
+                    link.classList.add('active');
+                }
+            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function updateDateTime() {
+            const dateElement = document.getElementById('current-date');
+            if (dateElement) {
+                const now = new Date();
+                const options = { 
+                    weekday: 'long', 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit'
+                };
+                const dateTimeString = now.toLocaleDateString('es-ES', options);
+                dateElement.textContent = dateTimeString.charAt(0).toUpperCase() + dateTimeString.slice(1);
+            }
+        }
+
+        window.onload = function() {
+            updateDateTime();
+            setInterval(updateDateTime, 1000);
+        };
+    </script>
+
+</body>
+</html>

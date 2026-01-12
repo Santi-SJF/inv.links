@@ -415,9 +415,9 @@
                 { t: "Talento", d: "Inflación salarial en India." }
             ],
             scenarios: [
-                { n: "Bajista (15%)", p: "€52", u: "-26%", c: "bg-red-500" },
-                { n: "Base (55%)", p: "€117", u: "+66%", c: "bg-blue-600" },
-                { n: "Alcista (30%)", p: "€165", u: "+134%", c: "bg-green-500" }
+                { n: "Bajista (15%)", p: "€52", u: "-26%", c: "bg-red-500", d: "Recesión H2 2026. Márgenes caen al 13%. Gobernanza vuelve a preocupar." },
+                { n: "Base (55%)", p: "€117", u: "+66%", c: "bg-blue-600", d: "Ingresos +9%. Margen 16%. Múltiplo normalizado a 9x EV/EBITDA." },
+                { n: "Alcista (30%)", p: "€165", u: "+134%", c: "bg-green-500", d: "Superciclo IA. Márgenes 17.5%. Percibida como 'Mini-EPAM'. 12x EV/EBITDA." }
             ],
             redflags: [
                 "Recurrencia factoring desproporcionado",
@@ -542,17 +542,18 @@
             `).join('');
 
             document.getElementById('scenario-list').innerHTML = data.scenarios.map(s => `
-                <div class="relative">
-                    <div class="flex justify-between items-end mb-1">
+                <div class="relative mb-6 last:mb-0">
+                    <div class="flex justify-between items-end mb-2">
                         <span class="text-sm font-bold text-slate-700">${s.n}</span>
                         <div class="text-right">
                             <span class="text-lg font-bold text-slate-900">${s.p}</span>
                             <span class="text-xs font-bold ${s.u.includes('-')?'text-red-500':'text-green-500'} block">${s.u}</span>
                         </div>
                     </div>
-                    <div class="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
+                    <div class="h-2 w-full bg-slate-100 rounded-full overflow-hidden mb-2">
                         <div class="h-full ${s.c}" style="width: ${s.n.match(/\d+/)[0]}%"></div>
                     </div>
+                    <p class="text-xs text-slate-500 leading-relaxed">${s.d}</p>
                 </div>
             `).join('');
 

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tesis de Inversión - Consumo Discrecional</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            color: #f1f5f9;
+            overflow-x: hidden;
+        }
+
+        /* Tarjetas estilo Tesis Consumo */
+        .card-discretionary {
+            background-color: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-discretionary:hover {
+            transform: translateY(-5px);
+            background-color: rgba(255, 255, 255, 0.06);
+            border-color: #fb923c;
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6);
+        }
+
+        .date-container {
+            background-color: rgba(0, 0, 0, 0.15);
+            color: rgba(255, 255, 255, 0.9);
+            border-left: 3px solid rgba(255, 255, 255, 0.3);
+            padding: 0.25rem 0.75rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.025em;
+            display: flex;
+            align-items: center;
+            border-radius: 0 4px 4px 0;
+            min-width: 280px;
+        }
+
+        .section-content {
+            display: none;
+            animation: fadeInPage 0.6s ease-out;
+        }
+
+        .section-content.active {
+            display: block;
+        }
+
+        @keyframes fadeInPage {
+            from { opacity: 0; transform: scale(0.99); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .nav-link.active {
+            background-color: rgba(255, 255, 255, 0.15);
+            border-bottom: 3px solid #fdba74;
+        }
+
+        .ticker-badge {
+            background-color: rgba(251, 146, 60, 0.1);
+            color: #fb923c;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- Header Naranja Terminal -->
+    <header class="bg-orange-700 text-white shadow-2xl sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center">
+            <div class="flex items-center space-x-6">
+                <!-- Botón de Retorno -->
+                <a href="index.html" class="bg-orange-800 hover:bg-orange-900 px-4 py-2 rounded-lg text-xs font-bold uppercase transition-colors flex items-center group">
+                    <span class="mr-2 transition-transform group-hover:-translate-x-1">←</span> Volver
+                </a>
+                
+                <div class="flex flex-col">
+                    <h1 class="text-xl font-bold tracking-tight uppercase leading-none mb-2">Equity Research - Consumo Discrecional</h1>
+                    <div id="current-date" class="date-container md:inline-flex hidden">
+                        <!-- Reloj automático JS -->
+                    </div>
+                </div>
+            </div>
+            
+            <nav class="mt-4 md:mt-0">
+                <ul id="main-nav" class="flex space-x-1 text-xs font-bold uppercase tracking-wider">
+                    <li><button onclick="showSection('automobiles')" class="nav-link px-4 py-3 hover:bg-orange-600 transition active" data-section="automobiles">Automoción</button></li>
+                    <li><button onclick="showSection('luxury')" class="nav-link px-4 py-3 hover:bg-orange-600 transition" data-section="luxury">Lujo</button></li>
+                    <li><button onclick="showSection('retail')" class="nav-link px-4 py-3 hover:bg-orange-600 transition" data-section="retail">Comercio / E-com</button></li>
+                    <li><button onclick="showSection('leisure')" class="nav-link px-4 py-3 hover:bg-orange-600 transition" data-section="leisure">Ocio y Turismo</button></li>
+                    <li><button onclick="showSection('entertainment')" class="nav-link px-4 py-3 hover:bg-orange-600 transition" data-section="entertainment">Entretenimiento</button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        
+        <!-- SECCIÓN 1: AUTOMOCIÓN -->
+        <section id="automobiles" class="section-content active bg-[#1e1b4b] min-h-screen py-16">
+            <div class="container mx-auto px-6">
+                <div class="flex items-center mb-10">
+                    <div class="w-2 h-10 bg-orange-500 rounded-full mr-5"></div>
+                    <h2 class="text-3xl font-black text-white uppercase tracking-tighter">Automobiles & Components</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <a href="#" class="group card-discretionary p-8 rounded-3xl">
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="ticker-badge">TSLA</span>
+                            <span class="text-[10px] text-slate-400 uppercase font-bold tracking-widest">EV Leader</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white group-hover:text-orange-400 mb-3 transition-colors">Tesla, Inc.</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed flex-grow">
+                            Tesis sobre la integración vertical, dominio en software de conducción autónoma (FSD) y expansión de márgenes operativos.
+                        </p>
+                        <div class="mt-8 pt-4 border-t border-white/5 text-orange-400 font-bold text-xs uppercase flex justify-between items-center">
+                            Ver Análisis →
+                        </div>
+                    </a>
+                    <a href="#" class="group card-discretionary p-8 rounded-3xl">
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="ticker-badge">RACE</span>
+                            <span class="text-[10px] text-slate-400 uppercase font-bold tracking-widest">Ultra Luxury</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white group-hover:text-orange-400 mb-3 transition-colors">Ferrari N.V.</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed flex-grow">
+                            Análisis del poder de fijación de precios (pricing power) y la resiliencia de la demanda en el segmento de hiper-lujo.
+                        </p>
+                        <div class="mt-8 pt-4 border-t border-white/5 text-orange-400 font-bold text-xs uppercase flex justify-between items-center">
+                            Ver Análisis →
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 2: LUJO -->
+        <section id="luxury" class="section-content bg-[#2e1065] min-h-screen py-16">
+            <div class="container mx-auto px-6">
+                <div class="flex items-center mb-10">
+                    <div class="w-2 h-10 bg-purple-600 rounded-full mr-5"></div>
+                    <h2 class="text-3xl font-black text-white uppercase tracking-tighter">Luxury Goods</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <a href="#" class="group card-discretionary p-8 rounded-3xl">
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="ticker-badge">MC.PA</span>
+                            <span class="text-[10px] text-purple-300/50 uppercase font-bold tracking-widest">Conglomerate</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white group-hover:text-purple-300 mb-3 transition-colors">LVMH</h3>
+                        <p class="text-purple-100/40 text-sm leading-relaxed flex-grow">
+                            Tesis sobre la diversificación de marcas icónicas y el crecimiento exponencial de la clase media en mercados emergentes.
+                        </p>
+                        <div class="mt-8 pt-4 border-t border-white/5 text-orange-400 font-bold text-xs uppercase">
+                            Leer Documento →
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 3: COMERCIO -->
+        <section id="retail" class="section-content bg-[#111827] min-h-screen py-16">
+            <div class="container mx-auto px-6">
+                <div class="flex items-center mb-10">
+                    <div class="w-2 h-10 bg-gray-600 rounded-full mr-5"></div>
+                    <h2 class="text-3xl font-black text-white uppercase tracking-tighter">Retail & E-commerce</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <a href="#" class="group card-discretionary p-8 rounded-3xl">
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="ticker-badge">ITX.MC</span>
+                            <span class="text-[10px] text-gray-500 uppercase font-bold tracking-widest">Fashion Retail</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white group-hover:text-orange-400 mb-3 transition-colors">Inditex</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed flex-grow">
+                            Optimización logística "Just-in-Time" y la exitosa integración del canal online con la tienda física (Omnicanalidad).
+                        </p>
+                        <div class="mt-8 pt-4 border-t border-white/5 text-orange-400 font-bold text-xs uppercase">
+                            Consultar Tesis →
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 4: OCIO -->
+        <section id="leisure" class="section-content bg-[#0c4a6e] min-h-screen py-16">
+            <div class="container mx-auto px-6">
+                <div class="flex items-center mb-10">
+                    <div class="w-2 h-10 bg-sky-700 rounded-full mr-5"></div>
+                    <h2 class="text-3xl font-black text-white uppercase tracking-tighter">Leisure & Tourism</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <a href="#" class="group card-discretionary p-8 rounded-3xl">
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="ticker-badge">BKNG</span>
+                            <span class="text-[10px] text-sky-300/50 uppercase font-bold tracking-widest">Online Travel</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white group-hover:text-sky-300 mb-3 transition-colors">Booking Holdings</h3>
+                        <p class="text-sky-100/40 text-sm leading-relaxed flex-grow">
+                            Análisis del efecto red en la reserva de viajes y la recuperación del turismo global post-pandemia.
+                        </p>
+                        <div class="mt-8 pt-4 border-t border-white/5 text-orange-400 font-bold text-xs uppercase">
+                            Abrir Archivo →
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 5: ENTRETENIMIENTO (Fondo Magenta/Violeta Profundo) -->
+        <section id="entertainment" class="section-content bg-[#4a044e] min-h-screen py-16">
+            <div class="container mx-auto px-6">
+                <div class="flex items-center mb-10">
+                    <div class="w-2 h-10 bg-fuchsia-700 rounded-full mr-5"></div>
+                    <h2 class="text-3xl font-black text-white uppercase tracking-tighter">Entertainment & Gaming</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Ejemplo: Nintendo -->
+                    <a href="#" class="group card-discretionary p-8 rounded-3xl">
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="ticker-badge">7974.T</span>
+                            <span class="text-[10px] text-fuchsia-300/50 uppercase font-bold tracking-widest">Video Games</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white group-hover:text-fuchsia-300 mb-3 transition-colors">Nintendo Co., Ltd.</h3>
+                        <p class="text-fuchsia-100/40 text-sm leading-relaxed flex-grow">
+                            Tesis basada en el valor de sus IPs exclusivas (Mario, Zelda), el ciclo de vida de sus consolas y su expansión hacia parques temáticos y cine.
+                        </p>
+                        <div class="mt-8 pt-4 border-t border-white/5 text-orange-400 font-bold text-xs uppercase">
+                            Ver Análisis →
+                        </div>
+                    </a>
+
+                    <!-- Ejemplo: Games Workshop -->
+                    <a href="empresas/consumer_discretionary/games_workshop.html" class="group card-discretionary p-8 rounded-3xl">
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="ticker-badge">GAW.L</span>
+                            <span class="text-[10px] text-fuchsia-300/50 uppercase font-bold tracking-widest">Tabletop Gaming</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white group-hover:text-fuchsia-300 mb-3 transition-colors">Games Workshop Group</h3>
+                        <p class="text-fuchsia-100/40 text-sm leading-relaxed flex-grow">
+                            Líder en wargames de miniaturas (Warhammer). Análisis de su integración vertical, márgenes operativos excepcionales y potencial de licencias multimedia.
+                        </p>
+                        <div class="mt-8 pt-4 border-t border-white/5 text-orange-400 font-bold text-xs uppercase">
+                            Leer Tesis →
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-black/40 border-t border-white/5 py-10">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-orange-600 text-[10px] font-black uppercase tracking-[0.3em] mb-4">Investment Research Dashboard</p>
+            <p class="text-zinc-600 text-[10px] uppercase tracking-widest">Consumo Discrecional • Tendencias Globales • 2026</p>
+        </div>
+    </footer>
+
+    <script>
+        function showSection(sectionId) {
+            document.querySelectorAll('.section-content').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+                if(link.getAttribute('data-section') === sectionId) {
+                    link.classList.add('active');
+                }
+            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function updateDateTime() {
+            const dateElement = document.getElementById('current-date');
+            if (dateElement) {
+                const now = new Date();
+                const options = { 
+                    weekday: 'long', 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit'
+                };
+                const dateTimeString = now.toLocaleDateString('es-ES', options);
+                dateElement.textContent = dateTimeString.charAt(0).toUpperCase() + dateTimeString.slice(1);
+            }
+        }
+
+        window.onload = function() {
+            updateDateTime();
+            setInterval(updateDateTime, 1000);
+        };
+    </script>
+
+</body>
+</html>

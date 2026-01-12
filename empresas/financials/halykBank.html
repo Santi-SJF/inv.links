@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halyk Bank (HSBK) - Tesis de Inversión 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap');
+        
+        body { font-family: 'Inter', sans-serif; background-color: #f1f5f9; color: #0f172a; }
+        h1, h2, h3, .serif { font-family: 'Playfair Display', serif; }
+        
+        .nav-item.active {
+            background-color: #059669; /* Emerald 600 */
+            color: white;
+            font-weight: 600;
+        }
+        
+        .section-content {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+        
+        .section-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .metric-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+        .metric-card:hover {
+            border-color: #10b981;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col">
+
+    <!-- Header Fixed -->
+    <header class="bg-slate-900 text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo & Date -->
+                <div class="flex flex-col">
+                    <div class="flex items-center gap-2">
+                        <div class="bg-emerald-500 p-1.5 rounded">
+                            <i data-lucide="bar-chart-2" class="h-5 w-5 text-white"></i>
+                        </div>
+                        <span class="font-bold text-xl tracking-tight">Alpha<span class="text-emerald-400">Research</span></span>
+                    </div>
+                    <div class="text-[10px] text-slate-400 mt-1 uppercase tracking-widest flex items-center gap-1">
+                        <i data-lucide="calendar" class="h-3 w-3"></i> 12 Enero 2026
+                    </div>
+                </div>
+
+                <!-- Main Navigation -->
+                <nav class="hidden md:flex bg-slate-800 rounded-lg p-1 space-x-1">
+                    <button onclick="showSection('resumen')" id="nav-resumen" class="nav-item active px-4 py-2 rounded-md text-sm transition-colors duration-200">Resumen</button>
+                    <button onclick="showSection('negocio')" id="nav-negocio" class="nav-item px-4 py-2 rounded-md text-sm transition-colors duration-200 hover:text-white text-slate-300">Negocio</button>
+                    <button onclick="showSection('financiero')" id="nav-financiero" class="nav-item px-4 py-2 rounded-md text-sm transition-colors duration-200 hover:text-white text-slate-300">Desempeño</button>
+                    <button onclick="showSection('riesgos')" id="nav-riesgos" class="nav-item px-4 py-2 rounded-md text-sm transition-colors duration-200 hover:text-white text-slate-300">Riesgos</button>
+                    <button onclick="showSection('valoracion')" id="nav-valoracion" class="nav-item px-4 py-2 rounded-md text-sm transition-colors duration-200 hover:text-white text-slate-300">Valoración</button>
+                </nav>
+
+                <!-- Recommendation Badge -->
+                <div class="text-right">
+                    <div class="text-[10px] text-slate-400 uppercase font-bold">Recomendación</div>
+                    <div class="bg-emerald-600 text-white text-xs font-bold px-3 py-1 rounded inline-block shadow-lg shadow-emerald-900/50">STRONG BUY</div>
+                </div>
+            </div>
+            <!-- Mobile Nav Warning -->
+            <div class="md:hidden pb-2 text-center text-xs text-slate-500">
+                Usa una pantalla más grande para la mejor experiencia de navegación.
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+
+        <!-- SECTION 1: RESUMEN EJECUTIVO (HOME) -->
+        <div id="resumen" class="section-content active space-y-8">
+            <!-- Hero Card -->
+            <div class="bg-gradient-to-r from-slate-900 to-slate-800 rounded-2xl p-8 lg:p-12 text-white relative overflow-hidden shadow-2xl">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-emerald-500 rounded-full blur-[100px] opacity-20"></div>
+                
+                <div class="relative z-10 grid lg:grid-cols-2 gap-12">
+                    <div>
+                        <h1 class="text-4xl lg:text-5xl font-bold mb-6 leading-tight">Halyk Bank (HSBK)</h1>
+                        <h2 class="text-xl text-slate-300 mb-8 font-light serif italic">"El Compounder de la Ruta de la Seda: Valoración, Dividendos y Crecimiento Digital."</h2>
+                        
+                        <div class="grid grid-cols-3 gap-4 text-center lg:text-left">
+                            <div>
+                                <p class="text-slate-400 text-xs uppercase mb-1">Precio Actual</p>
+                                <p class="text-2xl font-bold">$29.55</p>
+                            </div>
+                            <div>
+                                <p class="text-emerald-400 text-xs uppercase mb-1">Precio Objetivo</p>
+                                <p class="text-2xl font-bold text-emerald-400">$42.50</p>
+                            </div>
+                            <div>
+                                <p class="text-slate-400 text-xs uppercase mb-1">Upside</p>
+                                <p class="text-2xl font-bold">~44%</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6">
+                        <h3 class="font-bold text-lg mb-4 border-b border-white/10 pb-2">Tesis en 4 Puntos</h3>
+                        <ul class="space-y-4 text-sm text-slate-300">
+                            <li class="flex gap-3">
+                                <div class="bg-emerald-500/20 p-1 rounded text-emerald-400 h-fit"><i data-lucide="trending-up" class="w-4 h-4"></i></div>
+                                <span><strong>Dislocación de Valoración:</strong> P/E 2026E de <span class="text-white font-mono">3.3x</span> vs Pares Fintech (~7x). El mercado ignora la transformación digital.</span>
+                            </li>
+                            <li class="flex gap-3">
+                                <div class="bg-emerald-500/20 p-1 rounded text-emerald-400 h-fit"><i data-lucide="globe" class="w-4 h-4"></i></div>
+                                <span><strong>Expansión Regional:</strong> Adquisición estratégica de <strong>Click</strong> en Uzbekistán (15M usuarios) cambia el perfil de crecimiento.</span>
+                            </li>
+                            <li class="flex gap-3">
+                                <div class="bg-emerald-500/20 p-1 rounded text-emerald-400 h-fit"><i data-lucide="shield-check" class="w-4 h-4"></i></div>
+                                <span><strong>Fortress Balance Sheet:</strong> Capital robusto (k2 ~19.7%) y cobertura de reservas del 155% permiten absorber shocks fiscales.</span>
+                            </li>
+                            <li class="flex gap-3">
+                                <div class="bg-emerald-500/20 p-1 rounded text-emerald-400 h-fit"><i data-lucide="dollar-sign" class="w-4 h-4"></i></div>
+                                <span><strong>Retorno al Accionista:</strong> Política de dividendos agresiva (Yield 12-16%) respaldada por generación de caja récord.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Macro Context Mini-Grid -->
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                    <h4 class="font-bold text-slate-800 mb-2">PIB Kazajstán 2026</h4>
+                    <div class="text-3xl font-bold text-emerald-600">4.5% - 5.5%</div>
+                    <p class="text-xs text-slate-500 mt-2">Crecimiento sólido impulsado por expansión petrolera y capital fijo.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                    <h4 class="font-bold text-slate-800 mb-2">Política Monetaria</h4>
+                    <div class="text-3xl font-bold text-blue-600">14% - 16%</div>
+                    <p class="text-xs text-slate-500 mt-2">Tasa base a la baja (desde 18%), estimulando el crédito.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                    <h4 class="font-bold text-slate-800 mb-2">Tipo Cambio (USD/KZT)</h4>
+                    <div class="text-3xl font-bold text-slate-700">600 - 610</div>
+                    <p class="text-xs text-slate-500 mt-2">Depreciación beneficia la posición larga en USD de Halyk.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 2: MODELO DE NEGOCIO -->
+        <div id="negocio" class="section-content space-y-8">
+            <div class="bg-white rounded-xl p-8 border border-slate-200 shadow-sm">
+                <h2 class="text-2xl font-bold text-slate-900 mb-6 serif">El Ecosistema Halyk: Más que un Banco</h2>
+                <p class="text-slate-600 mb-8 max-w-4xl">
+                    Halyk Bank controla aproximadamente el <strong>30-35%</strong> de los activos del sistema bancario kazajo. Sin embargo, su verdadera fortaleza radica en su transformación de un prestamista corporativo tradicional a un ecosistema digital integrado.
+                </p>
+
+                <div class="grid lg:grid-cols-3 gap-8">
+                    <!-- Segmento Corporativo -->
+                    <div class="metric-card p-6 rounded-lg">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                            <i data-lucide="building-2" class="text-blue-600 h-6 w-6"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Banca Corporativa (Legacy)</h3>
+                        <p class="text-sm text-slate-600 mb-4">La columna vertebral histórica. Genera flujos de caja estables y relaciones gubernamentales clave.</p>
+                        <ul class="text-xs text-slate-500 space-y-2">
+                            <li>• Clientes principales: O&G, Minería, Infraestructura.</li>
+                            <li>• Ventaja: Costo de fondeo más bajo del mercado gracias a cuentas de nómina estatales.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Segmento Retail / Digital -->
+                    <div class="metric-card p-6 rounded-lg border-emerald-200 bg-emerald-50/30">
+                        <div class="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center mb-4">
+                            <i data-lucide="smartphone" class="text-emerald-600 h-6 w-6"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2 text-emerald-900">Retail & Super App</h3>
+                        <p class="text-sm text-slate-600 mb-4">El motor de crecimiento. La Super App <strong>Halyk Homebank</strong> es el centro de la vida financiera.</p>
+                        <ul class="text-xs text-slate-500 space-y-2">
+                            <li>• <strong>94%</strong> de préstamos originados digitalmente.</li>
+                            <li>• >11 Millones de usuarios activos mensuales (MAU).</li>
+                            <li>• Integración de GovTech (servicios públicos en la app).</li>
+                        </ul>
+                    </div>
+
+                    <!-- Subsidiarias y Ecosistema -->
+                    <div class="metric-card p-6 rounded-lg">
+                        <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                            <i data-lucide="layers" class="text-purple-600 h-6 w-6"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Ecosistema Ampliado</h3>
+                        <p class="text-sm text-slate-600 mb-4">Diversificación de ingresos más allá del margen de intereses.</p>
+                        <ul class="text-xs text-slate-500 space-y-2">
+                            <li>• <strong>Halyk Invest:</strong> Brokerage retail líder.</li>
+                            <li>• <strong>Halyk Life/Insurance:</strong> Líder en seguros de vida y generales.</li>
+                            <li>• <strong>Halyk Market:</strong> E-commerce incipiente.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Deep Dive: Uzbekistan -->
+            <div class="bg-indigo-900 text-white rounded-xl p-8 shadow-xl">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-indigo-700 p-2 rounded"><i data-lucide="map" class="h-6 w-6"></i></div>
+                    <h3 class="text-xl font-bold">El Catalizador: Expansión en Uzbekistán</h3>
+                </div>
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div>
+                        <p class="text-indigo-200 mb-4 leading-relaxed">
+                            Uzbekistán es el mercado de consumo de más rápido crecimiento en Asia Central (35M habitantes). La estrategia de Halyk evita el alto coste de abrir sucursales físicas mediante una adquisición inteligente.
+                        </p>
+                        <div class="bg-indigo-800/50 p-4 rounded-lg border border-indigo-700">
+                            <p class="font-bold text-white mb-1">Adquisición: Click (Jul 2025)</p>
+                            <p class="text-sm text-indigo-300">Precio: $176.4M por el 49% (Opción de control restante).</p>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-white mb-4">La Sinergia Perfecta</h4>
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-3">
+                                <span class="bg-white text-indigo-900 text-xs font-bold px-2 py-1 rounded">1</span>
+                                <span class="text-sm text-indigo-100"><strong>Click:</strong> Aporta 15M de usuarios y procesamiento de pagos (Bajo Capital, Alta Frecuencia).</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="bg-white text-indigo-900 text-xs font-bold px-2 py-1 rounded">2</span>
+                                <span class="text-sm text-indigo-100"><strong>Tenge Bank (Subsidiaria Halyk):</strong> Aporta la licencia bancaria y el balance para prestar (Alto Capital, Alto Margen).</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="bg-white text-indigo-900 text-xs font-bold px-2 py-1 rounded">3</span>
+                                <span class="text-sm text-indigo-100"><strong>Resultado:</strong> Cross-selling masivo de préstamos a la base de usuarios de Click con coste de adquisición (CAC) casi nulo.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 3: ANÁLISIS FINANCIERO -->
+        <div id="financiero" class="section-content space-y-8">
+            <div class="grid lg:grid-cols-2 gap-8">
+                <!-- Main KPI Table -->
+                <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-sm">
+                    <h3 class="font-bold text-slate-900 mb-6 flex items-center gap-2">
+                        <i data-lucide="table-2" class="text-slate-400"></i> Resultados Clave (9M 2025)
+                    </h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm text-left">
+                            <thead class="text-xs text-slate-500 uppercase bg-slate-50">
+                                <tr>
+                                    <th class="px-4 py-3">Métrica</th>
+                                    <th class="px-4 py-3 text-right">Valor</th>
+                                    <th class="px-4 py-3 text-right">Variación YoY</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100">
+                                <tr>
+                                    <td class="px-4 py-3 font-medium">Ingresos por Intereses (NII)</td>
+                                    <td class="px-4 py-3 text-right font-mono">Alta Solidez</td>
+                                    <td class="px-4 py-3 text-right text-emerald-600 font-bold">+27.2%</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-3 font-medium">Comisiones Netas (F&C)</td>
+                                    <td class="px-4 py-3 text-right font-mono">Crec. Exponencial</td>
+                                    <td class="px-4 py-3 text-right text-emerald-600 font-bold">+75.0%</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-3 font-medium">Gastos Operativos</td>
+                                    <td class="px-4 py-3 text-right font-mono">Controlados</td>
+                                    <td class="px-4 py-3 text-right text-amber-600">+14.5%</td>
+                                </tr>
+                                <tr class="bg-slate-50">
+                                    <td class="px-4 py-3 font-bold text-slate-900">Beneficio Neto</td>
+                                    <td class="px-4 py-3 text-right font-mono font-bold">>1 Billón KZT</td>
+                                    <td class="px-4 py-3 text-right text-emerald-600 font-bold">+26.8%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Efficiency & Profitability Cards -->
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-emerald-50 p-6 rounded-xl border border-emerald-100 flex flex-col justify-center text-center">
+                        <p class="text-slate-500 text-xs uppercase font-bold mb-2">Cost-to-Income</p>
+                        <p class="text-4xl font-bold text-emerald-700">16.3%</p>
+                        <p class="text-xs text-emerald-600 mt-2">Líder global en eficiencia</p>
+                    </div>
+                    <div class="bg-blue-50 p-6 rounded-xl border border-blue-100 flex flex-col justify-center text-center">
+                        <p class="text-slate-500 text-xs uppercase font-bold mb-2">ROE (Retorno s/Capital)</p>
+                        <p class="text-4xl font-bold text-blue-700">34.1%</p>
+                        <p class="text-xs text-blue-600 mt-2">Muy superior al coste del equity</p>
+                    </div>
+                    <div class="bg-slate-50 p-6 rounded-xl border border-slate-200 flex flex-col justify-center text-center col-span-2">
+                        <p class="text-slate-500 text-xs uppercase font-bold mb-2">Adecuación de Capital (k2)</p>
+                        <p class="text-3xl font-bold text-slate-700">~19.7%</p>
+                        <p class="text-xs text-slate-500 mt-2">Muy por encima del mínimo regulatorio. Permite pagar dividendos altos.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Asset Quality Analysis -->
+            <div class="bg-white rounded-xl p-8 border border-slate-200 shadow-sm">
+                <h3 class="font-bold text-slate-900 mb-4">Calidad de Activos: El "Fortress Balance Sheet"</h3>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div>
+                        <p class="text-sm text-slate-600 mb-1">Ratio de Morosidad (NPL 90+)</p>
+                        <div class="w-full bg-slate-100 rounded-full h-2 mb-2">
+                            <div class="bg-emerald-500 h-2 rounded-full" style="width: 4.8%"></div>
+                        </div>
+                        <p class="font-bold text-lg">4.8%</p>
+                        <p class="text-xs text-slate-400">Estable y bajo control.</p>
+                    </div>
+                    <div>
+                        <p class="text-sm text-slate-600 mb-1">Cobertura de Provisiones</p>
+                        <div class="w-full bg-slate-100 rounded-full h-2 mb-2">
+                            <div class="bg-blue-500 h-2 rounded-full" style="width: 100%"></div> <!-- Visual cap at 100 for design -->
+                        </div>
+                        <p class="font-bold text-lg">~155%</p>
+                        <p class="text-xs text-slate-400">Reservas exceden las pérdidas esperadas.</p>
+                    </div>
+                    <div>
+                        <p class="text-sm text-slate-600 mb-1">Costo del Riesgo (CoR)</p>
+                        <p class="font-bold text-lg">1.0% - 1.2%</p>
+                        <p class="text-xs text-slate-400">Normalizado tras el ciclo de crédito.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 4: RIESGOS -->
+        <div id="riesgos" class="section-content space-y-6">
+            <h2 class="text-2xl font-bold text-slate-900 mb-4 serif">Matriz de Riesgos y Mitigantes</h2>
+            
+            <!-- Riesgo Fiscal -->
+            <div class="bg-white p-6 rounded-xl border-l-4 border-red-500 shadow-sm hover:shadow-md transition">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h3 class="text-lg font-bold text-red-700 mb-2">1. Riesgo Fiscal y Regulatorio</h3>
+                        <p class="text-slate-700 text-sm leading-relaxed mb-4">
+                            El nuevo Código Fiscal de 2026 aumenta el Impuesto de Sociedades (CIT) para bancos del 20% al 25%. Adicionalmente, se plantea un impuesto único del 10% sobre las ganancias retenidas de 2025.
+                        </p>
+                    </div>
+                    <div class="bg-red-50 p-2 rounded-full"><i data-lucide="file-warning" class="text-red-500"></i></div>
+                </div>
+                <div class="bg-slate-50 p-4 rounded border border-slate-200 mt-2">
+                    <p class="text-xs font-bold text-emerald-700 uppercase mb-1">Factor Mitigante</p>
+                    <p class="text-sm text-slate-600">
+                        El mercado ya ha descontado este impacto ("Priced-in"). Gracias a la eficiencia operativa (Cost-to-Income 16%), Halyk puede absorber el golpe fiscal y mantener su rentabilidad neta nominal mediante el crecimiento del volumen de crédito.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Riesgo Geopolítico -->
+            <div class="bg-white p-6 rounded-xl border-l-4 border-orange-500 shadow-sm hover:shadow-md transition">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h3 class="text-lg font-bold text-orange-700 mb-2">2. Geopolítica y Sanciones Secundarias</h3>
+                        <p class="text-slate-700 text-sm leading-relaxed mb-4">
+                            Dada la frontera extensa con Rusia y los flujos comerciales, existe el riesgo constante de escrutinio por parte de la OFAC/UE sobre posibles evasiones de sanciones.
+                        </p>
+                    </div>
+                    <div class="bg-orange-50 p-2 rounded-full"><i data-lucide="globe-2" class="text-orange-500"></i></div>
+                </div>
+                <div class="bg-slate-50 p-4 rounded border border-slate-200 mt-2">
+                    <p class="text-xs font-bold text-emerald-700 uppercase mb-1">Factor Mitigante</p>
+                    <p class="text-sm text-slate-600">
+                        Halyk vendió su subsidiaria rusa (Moskomprivatbank) en 2022, eliminando exposición directa. Su departamento de Compliance es auditado internacionalmente y mantiene relaciones corresponsales activas con BNY Mellon y Citi, lo que certifica su limpieza.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Riesgo Económico -->
+            <div class="bg-white p-6 rounded-xl border-l-4 border-yellow-500 shadow-sm hover:shadow-md transition">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h3 class="text-lg font-bold text-yellow-700 mb-2">3. Dependencia del Petróleo</h3>
+                        <p class="text-slate-700 text-sm leading-relaxed mb-4">
+                            La economía kazaja sigue correlacionada con el Brent. Una caída sostenida por debajo de $60/barril afectaría la liquidez del sistema y la calidad de los préstamos corporativos.
+                        </p>
+                    </div>
+                    <div class="bg-yellow-50 p-2 rounded-full"><i data-lucide="droplet" class="text-yellow-500"></i></div>
+                </div>
+                <div class="bg-slate-50 p-4 rounded border border-slate-200 mt-2">
+                    <p class="text-xs font-bold text-emerald-700 uppercase mb-1">Factor Mitigante</p>
+                    <p class="text-sm text-slate-600">
+                        Diversificación agresiva hacia el segmento Retail y PYME (SME), que son menos sensibles al precio del crudo. El balance mantiene colchones de capital excesivos para soportar escenarios de estrés severo.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 5: VALORACIÓN -->
+        <div id="valoracion" class="section-content space-y-8">
+            <!-- Comparative Analysis Table -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-slate-200">
+                <div class="p-6 border-b border-slate-100 bg-slate-50">
+                    <h3 class="text-xl font-bold text-slate-900">Comparativa de Múltiplos (2026E)</h3>
+                    <p class="text-sm text-slate-500">Halyk vs Pares Regionales y Fintechs</p>
+                </div>
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="text-xs uppercase text-slate-500 bg-slate-50 border-b border-slate-200">
+                            <th class="px-6 py-4 font-bold">Indicador</th>
+                            <th class="px-6 py-4 font-bold text-emerald-700 bg-emerald-50">Halyk Bank (HSBK)</th>
+                            <th class="px-6 py-4 font-bold">Kaspi.kz (KSPI)</th>
+                            <th class="px-6 py-4 font-bold">Bank of Georgia (BGEO)</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-sm divide-y divide-slate-100">
+                        <tr>
+                            <td class="px-6 py-4 font-medium text-slate-900">P/E Ratio (Precio/Beneficio)</td>
+                            <td class="px-6 py-4 font-bold text-emerald-700 bg-emerald-50">3.3x - 3.8x</td>
+                            <td class="px-6 py-4 text-slate-600">~7.0x - 8.0x</td>
+                            <td class="px-6 py-4 text-slate-600">~4.5x - 5.0x</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 font-medium text-slate-900">P/B Ratio (Precio/Libros)</td>
+                            <td class="px-6 py-4 font-bold text-emerald-700 bg-emerald-50">1.1x - 1.3x</td>
+                            <td class="px-6 py-4 text-slate-600">>5.0x</td>
+                            <td class="px-6 py-4 text-slate-600">~1.5x</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 font-medium text-slate-900">Dividend Yield</td>
+                            <td class="px-6 py-4 font-bold text-emerald-700 bg-emerald-50">14% - 16%</td>
+                            <td class="px-6 py-4 text-slate-600">6% - 8%</td>
+                            <td class="px-6 py-4 text-slate-600">6% - 8%</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="p-4 bg-yellow-50 text-yellow-800 text-xs flex gap-2">
+                    <i data-lucide="info" class="w-4 h-4 mt-0.5"></i>
+                    <p><strong>Nota del Analista:</strong> El descuento del 50% respecto a Kaspi es injustificado dado que Halyk tiene un ROE comparable (>30%) y está cerrando la brecha tecnológica rápidamente.</p>
+                </div>
+            </div>
+
+            <!-- Scenarios -->
+            <h3 class="text-xl font-bold text-slate-900 mt-8 mb-4">Escenarios de Precio Objetivo (12-18 Meses)</h3>
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Bear -->
+                <div class="bg-white p-6 rounded-xl border-t-4 border-red-500 shadow-sm opacity-75 hover:opacity-100 transition">
+                    <p class="text-xs font-bold text-red-500 uppercase">Escenario Bajista</p>
+                    <p class="text-3xl font-bold text-slate-800 mt-2">$24.00</p>
+                    <p class="text-sm text-slate-500 mt-4 leading-snug">Petróleo &lt;$60, aumento drástico de morosidad y recorte de dividendos.</p>
+                </div>
+                <!-- Base -->
+                <div class="bg-white p-6 rounded-xl border-t-4 border-emerald-500 shadow-xl transform scale-105 z-10">
+                    <div class="flex justify-between">
+                        <p class="text-xs font-bold text-emerald-600 uppercase">Escenario Base</p>
+                        <span class="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-full">Alta Probabilidad</span>
+                    </div>
+                    <p class="text-4xl font-bold text-slate-900 mt-2">$42.50</p>
+                    <p class="text-sm text-emerald-700 font-bold mt-1">Upside: ~44%</p>
+                    <p class="text-sm text-slate-600 mt-4 leading-snug">Crecimiento moderado, integración exitosa de Click, Payout de dividendos del 50-60%.</p>
+                </div>
+                <!-- Bull -->
+                <div class="bg-white p-6 rounded-xl border-t-4 border-blue-500 shadow-sm opacity-75 hover:opacity-100 transition">
+                    <p class="text-xs font-bold text-blue-500 uppercase">Escenario Alcista</p>
+                    <p class="text-3xl font-bold text-slate-800 mt-2">$52.00+</p>
+                    <p class="text-sm text-slate-500 mt-4 leading-snug">Reclasificación como "Fintech" (re-rating de múltiplos), petróleo >$90.</p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-8 border-t border-slate-800 text-center text-xs mt-auto">
+        <p>&copy; 2026 Alpha Research. Analista: Santiago Jiménez Francés.</p>
+        <p class="mt-2 text-slate-600 max-w-2xl mx-auto">
+            Este informe se basa en el documento "Tesis de Inversión Halyk Bank (HSBK)-260112". No constituye asesoramiento financiero directo. Los rendimientos pasados no garantizan futuros.
+        </p>
+    </footer>
+
+    <!-- Interactive Logic -->
+    <script>
+        // Init Icons
+        lucide.createIcons();
+
+        // Tab Switching Logic
+        function showSection(sectionId) {
+            // 1. Hide all sections
+            const sections = document.querySelectorAll('.section-content');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // 2. Show selected section
+            const activeSection = document.getElementById(sectionId);
+            if (activeSection) {
+                activeSection.classList.add('active');
+            }
+
+            // 3. Update Nav Button Styles
+            const buttons = document.querySelectorAll('.nav-item');
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+                btn.classList.add('text-slate-300'); // Reset to inactive color
+                btn.classList.remove('text-white');
+            });
+
+            const activeButton = document.getElementById('nav-' + sectionId);
+            if (activeButton) {
+                activeButton.classList.add('active');
+                activeButton.classList.remove('text-slate-300');
+            }
+            
+            // 4. Scroll to top slightly for UX
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
